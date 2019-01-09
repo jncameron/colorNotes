@@ -18,13 +18,27 @@ class App extends Component {
 
   state = { notes: [] };
 
+  deleteNote = (key) => {
+    let filteredNotes = this.state.notes.filter(function (item) {
+      return (item.key !== key)
+    });
+
+    this.setState({
+      notes: filteredNotes
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <button className="ui button inverted green">Old to New</button>
-        <button className="ui button inverted green">New to Old</button>
+        <div className="ui raised padded inverted green tertiary segment">
+          <h1>Color Notes</h1>
+          <img src="./sort.svg" height="20px"/>
+        </div>
+
+
         <NewNote onSubmit={this.onNoteSubmit} />
-        <Notes entries={this.state.notes} />
+        <Notes entries={this.state.notes} delete={this.deleteNote}/>
       </div>
     );
   }

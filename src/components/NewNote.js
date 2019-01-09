@@ -4,7 +4,6 @@ import './NewNote.css';
 
 class NewNote extends Component {
 
-
   onFormSubmit = e => {
     e.preventDefault();
     if (this._inputElement.value !=="") {
@@ -25,7 +24,9 @@ class NewNote extends Component {
 
   render() {
     return(
-      <div className="ui raised very padded yellow inverted compact tertiary segment" id="note-input">
+      <div>
+
+        <div className="ui raised very padded yellow inverted compact tertiary segment" id="note-input">
         <form onSubmit={this.onFormSubmit} >
           <div className="note-list">
             <div className="ui input focus">
@@ -36,13 +37,16 @@ class NewNote extends Component {
                 type="text"
                 
               />
-              <button type="submit">add</button>
+              <button type="submit" className="ui primary button" id="add-btn">add</button>
             </div>
           </div>
           <div>
           </div>
         </form>
       </div>
+      </div>
+
+
     )
   }
 }

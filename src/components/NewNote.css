@@ -6,3 +6,11 @@ input {
   margin: auto;
   margin-bottom: 50px;
 }
+
+#add-btn {
+  margin-left: 0px;
+}
+
+h1 {
+  text-align: center;
+}
