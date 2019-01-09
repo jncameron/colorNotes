@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
 import Notes from './Notes';
+import './NewNote.css';
 
 class NewNote extends Component {
 
-  state = { notes: [] };
 
   onFormSubmit = e => {
     e.preventDefault();
     if (this._inputElement.value !=="") {
+
       var newNote = {
         text: this._inputElement.value,
         key: Date.now()
       };
+
+      console.log(newNote)
     }
 
-    this.setState(prevState => {
-      return {
-        notes: prevState.notes.concat(newNote)
-      }
-    });
+    this.props.onSubmit(newNote);
 
     this._inputElement.value ="";
-    console.log(this.state.notes);
   }
 
 
@@ -29,7 +27,7 @@ class NewNote extends Component {
     return(
       <div className="ui segment">
         <form onSubmit={this.onFormSubmit} className="ui form">
-          <div className="field">
+          <div className="note-list">
             <label>New Note Title</label>
             <input
               ref={(a) => this._inputElement = a}
@@ -41,7 +39,6 @@ class NewNote extends Component {
           <div>
           </div>
         </form>
-        <Notes entries={this.state.notes} />
       </div>
     )
   }

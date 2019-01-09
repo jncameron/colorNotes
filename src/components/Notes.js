@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import './Notes.css'; 
 
 class Notes extends Component {
 
   createNotes(note) {
-    return <li key={note.key}>{note.text}</li>
+    return <div className="note" key={note.key}>{note.text}</div>
   }
 
   render() {
@@ -11,9 +12,9 @@ class Notes extends Component {
     let noteEntries = this.props.entries;
     let listItems = noteEntries.map(this.createNotes);
     return(
-      <ul className="note-list">
+      <div className="note-list">
         {listItems}
-      </ul>
+      </div>
     );
   }
 }
