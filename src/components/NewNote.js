@@ -25,17 +25,18 @@ class NewNote extends Component {
 
   render() {
     return(
-      <div className="ui raised compact padded yellow inverted tertiary segment">
-        <form onSubmit={this.onFormSubmit} className="ui form">
+      <div className="ui raised very padded yellow inverted compact tertiary segment" id="note-input">
+        <form onSubmit={this.onFormSubmit} >
           <div className="note-list">
-            <div className="ui input">
+            <div className="ui input focus">
+
               <input
                 ref={(a) => this._inputElement = a}
                 placeholder="Write new note here..."
                 type="text"
-                className="ui input"
+                
               />
-              <button type="submit" className="ui black basic button">add</button>
+              <button type="submit">add</button>
             </div>
           </div>
           <div>

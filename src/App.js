@@ -21,6 +21,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <button className="ui button inverted green">Old to New</button>
+        <button className="ui button inverted green">New to Old</button>
         <NewNote onSubmit={this.onNoteSubmit} />
         <Notes entries={this.state.notes} />
       </div>
