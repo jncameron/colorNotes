@@ -10,4 +10,5 @@ note-list {
   margin-bottom: 20px !important;
   margin-left: 10px !important;
   margin-right: 10px !important;
+  overflow: auto;
 }

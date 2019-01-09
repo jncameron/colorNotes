@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewNote from './components/NewNote';
 import Notes from './components/Notes';
+import './App.css';
 
 class App extends Component {
 
@@ -31,12 +32,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="ui raised padded inverted green tertiary segment">
+        <div className="ui raised padded segment" id="header">
           <h1>Color Notes</h1>
-          <img src="./sort.svg" height="20px"/>
         </div>
-
-
         <NewNote onSubmit={this.onNoteSubmit} />
         <Notes entries={this.state.notes} delete={this.deleteNote}/>
       </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Notes from './Notes';
 import './NewNote.css';
 
 class NewNote extends Component {
@@ -13,10 +12,10 @@ class NewNote extends Component {
         key: Date.now()
       };
 
-      console.log(newNote)
+      this.props.onSubmit(newNote);
     }
 
-    this.props.onSubmit(newNote);
+
 
     this._inputElement.value ="";
   }
@@ -26,7 +25,7 @@ class NewNote extends Component {
     return(
       <div>
 
-        <div className="ui raised very padded yellow inverted compact tertiary segment" id="note-input">
+        <div className="ui raised very padded compact segment" id="note-input">
         <form onSubmit={this.onFormSubmit} >
           <div className="note-list">
             <div className="ui input focus">
@@ -37,7 +36,15 @@ class NewNote extends Component {
                 type="text"
                 
               />
-              <button type="submit" className="ui primary button" id="add-btn">add</button>
+              <button type="submit" 
+                className="ui teal inverted animated button" 
+                id="add-btn" >
+                  <div className="visible content">add</div>
+                  <div className="hidden content">
+                    <i className="right arrow icon"></i>
+                  </div>
+                
+              </button>
             </div>
           </div>
           <div>

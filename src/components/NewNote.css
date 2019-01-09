@@ -4,11 +4,13 @@ input {
 
 #note-input {
   margin: auto;
+  margin-top: 50px;
   margin-bottom: 50px;
+  background-color: #03DAc5
 }
 
 #add-btn {
-  margin-left: 0px;
+  margin-left: 10px;
 }
 
 h1 {
