@@ -11,30 +11,22 @@ class NewNote extends Component {
         text: this._inputElement.value,
         key: Date.now()
       };
-
       this.props.onSubmit(newNote);
     }
-
-
-
     this._inputElement.value ="";
   }
-
 
   render() {
     return(
       <div>
-
         <div className="ui raised very padded compact segment" id="note-input">
         <form onSubmit={this.onFormSubmit} >
           <div className="note-list">
             <div className="ui input focus">
-
               <input
                 ref={(a) => this._inputElement = a}
                 placeholder="Write new note here..."
                 type="text"
-                
               />
               <button type="submit" 
                 className="ui teal inverted animated button" 
