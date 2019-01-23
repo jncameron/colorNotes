@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Tilt from 'react-tilt';
 
 import './Notes.css'; 
 
@@ -9,7 +10,16 @@ class Notes extends Component {
     
     let colors = ['red','orange','yellow','olive','green','teal','blue','violet','purple','pink'];
     let randomColor = colors[note.key.toString().slice(-1)[0]];
-    return <div onClick={() => this.delete(note.key)} id="new-note" className={'note ui inverted ' + randomColor + ' segment raised'} key={note.key}><strong>{note.text}</strong></div>;
+    return (
+      <Tilt className={Tilt}>
+        <div 
+        onClick={() => this.delete(note.key)} 
+        id="new-note" 
+        className={'note ui inverted ' + randomColor + ' segment raised Tilt-inner'} 
+        key={note.key}><strong>{note.text}</strong>
+        </div>
+      </Tilt>
+    )
   }
 
   delete = (key) => {
