@@ -1,6 +1,15 @@
 #header {
-  background-color: #3700b3
+  background-color: #6435c9
 }
 h1 {
   color: #FFF;
+}
+
+.particles {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #9be7ff
 }

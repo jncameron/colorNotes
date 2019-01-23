@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Particles from 'react-particles-js';
 import NewNote from './components/NewNote';
 import Notes from './components/Notes';
+import params from './particles';
 import './App.css';
 
 class App extends Component {
@@ -31,13 +33,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="ui raised padded segment" id="header">
-          <h1>Color Notes</h1>
+      
+        <div className="App">
+        <Particles className="particles" params={params} />
+          <div className="ui raised padded segment" id="header">
+            <h1>Color Notes</h1>
+          </div>
+          <NewNote onSubmit={this.onNoteSubmit} />
+          <Notes entries={this.state.notes} delete={this.deleteNote}/>
         </div>
-        <NewNote onSubmit={this.onNoteSubmit} />
-        <Notes entries={this.state.notes} delete={this.deleteNote}/>
-      </div>
     );
   }
 }

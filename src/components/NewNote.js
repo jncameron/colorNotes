@@ -29,7 +29,7 @@ class NewNote extends Component {
                 type="text"
               />
               <button type="submit" 
-                className="ui teal inverted animated button" 
+                className="ui violet inverted animated button" 
                 id="add-btn" >
                   <div className="visible content">add</div>
                   <div className="hidden content">
