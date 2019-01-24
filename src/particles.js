@@ -47,8 +47,8 @@ const params = {
 	                opacity: 0
 	            },
 	            repulse: {
-	                distance: 400,
-	                duration: 4
+	                distance: 200,
+	                duration: 2
 	            }
           }
         }

@@ -2,7 +2,13 @@
   background-color: #6435c9
 }
 h1 {
+  width: 90vw;
   color: #FFF;
+}
+
+Button {
+  width: 10vw;
+  max-width: 100px;
 }
 
 .particles {

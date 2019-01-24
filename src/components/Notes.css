@@ -12,3 +12,8 @@ note-list {
   margin-right: 10px !important;
   overflow: auto;
 }
+
+.completed {
+  text-decoration: line-through;
+  background: #666;
+}

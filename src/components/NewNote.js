@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Segment, Button } from 'semantic-ui-react';
 import './NewNote.css';
 
 class NewNote extends Component {
@@ -9,7 +10,8 @@ class NewNote extends Component {
 
       var newNote = {
         text: this._inputElement.value,
-        key: Date.now()
+        key: Date.now(),
+        completed: false
       };
       this.props.onSubmit(newNote);
     }
@@ -19,7 +21,7 @@ class NewNote extends Component {
   render() {
     return(
       <div>
-        <div className="ui raised very padded compact segment" id="note-input">
+        <Segment ui raised padded compact segment id="note-input">
         <form onSubmit={this.onFormSubmit} >
           <div className="note-list">
             <div className="ui input focus">
@@ -28,21 +30,22 @@ class NewNote extends Component {
                 placeholder="Write new note here..."
                 type="text"
               />
-              <button type="submit" 
-                className="ui violet inverted animated button" 
+              <Button ui inverted animated button
+                type="submit" 
+                className="violet"
                 id="add-btn" >
                   <div className="visible content">add</div>
                   <div className="hidden content">
                     <i className="right arrow icon"></i>
                   </div>
                 
-              </button>
+              </Button>
             </div>
           </div>
           <div>
           </div>
         </form>
-      </div>
+      </Segment>
       </div>
 
 
