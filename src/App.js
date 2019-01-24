@@ -9,14 +9,12 @@ import './App.css';
 class App extends Component {
 
   onNoteSubmit = (note) => {
-    console.log(note)
     
     this.setState(prevState => {
       return {
         notes: prevState.notes.concat(note)
       }
     });
-    console.log(this.state.notes)
 
   }
 
@@ -31,6 +29,16 @@ class App extends Component {
     this.setState({
       notes: filteredNotes
     });
+  }
+
+  editNote = (key) => {
+    let noteToEdit = this.state.notes;
+    for (let i=0; i < noteToEdit.length; i++) {
+      if(noteToEdit[i]['key'] === key) {
+        noteToEdit[i]['edit'] = true;
+      }
+    }
+    this.setState({notes: noteToEdit})
   }
 
   completeNote = (key) => {
@@ -48,12 +56,12 @@ class App extends Component {
     });
 
     let newNoteList = [...filteredNotes, completedNote]
-    console.log(newNoteList)
 
     this.setState({
       notes: newNoteList
     });
   }
+
 
   render() {
     return (
@@ -67,9 +75,8 @@ class App extends Component {
                 <h1>Color Notes</h1>
               </Grid.Column>
               <Grid.Column>
-                <Button ui inverted animated button
+                <Button className="ui inverted animated violet"
                   type="submit" 
-                  className="violet"
                   id="add-btn" 
                   onClick={this.deleteNote}>
                     <div className="visible content">clear completed</div>
@@ -84,7 +91,12 @@ class App extends Component {
           </Grid>
         </div>
         <NewNote onSubmit={this.onNoteSubmit} />
-        <Notes entries={this.state.notes} delete={this.deleteNote} complete={this.completeNote}/>
+        <Notes 
+          entries={this.state.notes} 
+          delete={this.deleteNote} 
+          complete={this.completeNote} 
+          edit={this.editNote} 
+        />
         </div>
     );
   }

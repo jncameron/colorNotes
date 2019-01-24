@@ -11,6 +11,7 @@ class NewNote extends Component {
       var newNote = {
         text: this._inputElement.value,
         key: Date.now(),
+        edit: false,
         completed: false
       };
       this.props.onSubmit(newNote);
@@ -21,18 +22,18 @@ class NewNote extends Component {
   render() {
     return(
       <div>
-        <Segment ui raised padded compact segment id="note-input">
+        <Segment className= "ui raised padded compact" id="note-input">
         <form onSubmit={this.onFormSubmit} >
           <div className="note-list">
-            <div className="ui input focus">
+            <div className="ui input focus new-note-input">
               <input
                 ref={(a) => this._inputElement = a}
                 placeholder="Write new note here..."
                 type="text"
               />
-              <Button ui inverted animated button
+              <Button
                 type="submit" 
-                className="violet"
+                className="ui inverted animated violet"
                 id="add-btn" >
                   <div className="visible content">add</div>
                   <div className="hidden content">
