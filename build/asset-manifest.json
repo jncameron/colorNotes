@@ -1,13 +1,16 @@
 {
-  "main.css": "/colorNotes/static/css/main.702e2425.chunk.css",
-  "main.js": "/colorNotes/static/js/main.b5156694.chunk.js",
-  "main.js.map": "/colorNotes/static/js/main.b5156694.chunk.js.map",
-  "static/js/1.d09bd230.chunk.js": "/colorNotes/static/js/1.d09bd230.chunk.js",
-  "static/js/1.d09bd230.chunk.js.map": "/colorNotes/static/js/1.d09bd230.chunk.js.map",
+  "main.css": "/colorNotes/static/css/main.c6df58ff.chunk.css",
+  "main.js": "/colorNotes/static/js/main.5b6af960.chunk.js",
+  "main.js.map": "/colorNotes/static/js/main.5b6af960.chunk.js.map",
+  "static/css/1.8c8a2de9.chunk.css": "/colorNotes/static/css/1.8c8a2de9.chunk.css",
+  "static/js/1.4afec784.chunk.js": "/colorNotes/static/js/1.4afec784.chunk.js",
+  "static/js/1.4afec784.chunk.js.map": "/colorNotes/static/js/1.4afec784.chunk.js.map",
   "runtime~main.js": "/colorNotes/static/js/runtime~main.8dc4d5a4.js",
   "runtime~main.js.map": "/colorNotes/static/js/runtime~main.8dc4d5a4.js.map",
-  "static/css/main.702e2425.chunk.css.map": "/colorNotes/static/css/main.702e2425.chunk.css.map",
+  "static/media/semantic.min.css": "/colorNotes/static/media/brand-icons.a1a749e8.svg",
+  "static/css/main.c6df58ff.chunk.css.map": "/colorNotes/static/css/main.c6df58ff.chunk.css.map",
+  "static/css/1.8c8a2de9.chunk.css.map": "/colorNotes/static/css/1.8c8a2de9.chunk.css.map",
   "index.html": "/colorNotes/index.html",
-  "precache-manifest.982467922752cb69d48ffe01f2252ea3.js": "/colorNotes/precache-manifest.982467922752cb69d48ffe01f2252ea3.js",
+  "precache-manifest.c14ae11253d00cdaf675fc9d4d4ca643.js": "/colorNotes/precache-manifest.c14ae11253d00cdaf675fc9d4d4ca643.js",
   "service-worker.js": "/colorNotes/service-worker.js"
 }
