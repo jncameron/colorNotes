@@ -19,3 +19,19 @@ Button {
   left: 0;
   background-color: #9be7ff
 }
+
+@media (max-width:600px) {
+  .ui.compact.segment {
+    display: block;
+
+    margin: 0 0;
+  }
+
+  .ui.padded.segment {
+    padding: 0;
+  }
+}
+
+@media (max-width:400px) {
+
+}

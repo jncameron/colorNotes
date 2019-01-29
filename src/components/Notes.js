@@ -9,11 +9,12 @@ class Notes extends Component {
     
     let colors = ['red','orange','yellow','olive','green','teal','blue','violet','purple','pink'];
     let randomColor = colors[note.key.toString().slice(-1)[0]];
-
     return (
-      
         note.completed === false
-        ?  
+        ?
+        (
+          (window.innerWidth > 600 
+          ?
         <Tilt className="Tilt" key={note.key}>
           <div 
           onClick={() => this.completed(note.key)} 
@@ -22,15 +23,36 @@ class Notes extends Component {
           ><strong>{note.text}</strong>
           </div>
         </Tilt>
-        :
-        <Tilt className="Tilt" key={note.key} >
+          :
           <div 
-          onClick={() => this.delete(note.key)} 
+          onClick={() => this.completed(note.key)} 
           id="new-note" 
-          className={'note ui inverted segment grey raised Tilt-inner completed'} 
-          >{note.text}
+          className={'note ui inverted ' + randomColor + ' segment raised Tilt-inner'} 
+          ><strong>{note.text}</strong>
           </div>
-        </Tilt>
+          ))
+
+        : 
+
+            ( window.innerWidth > 600 
+            ?
+            <Tilt className="Tilt" key={note.key} >
+              <div 
+              onClick={() => this.delete(note.key)} 
+              id="new-note" 
+              className={'note ui inverted segment grey raised Tilt-inner completed'} 
+              >{note.text}
+              </div>
+            </Tilt>
+            :
+              <div 
+              onClick={() => this.delete(note.key)} 
+              id="new-note" 
+              className={'note ui inverted segment grey raised Tilt-inner completed'} 
+              >{note.text}
+              </div>
+          )
+
     )
   }
 

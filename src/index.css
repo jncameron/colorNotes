@@ -8,3 +8,9 @@ body {
   display: flex;
   justify-content: flex;
 }
+
+@media (max-width:600px) {
+  body {
+    padding: 0;
+  }
+}
