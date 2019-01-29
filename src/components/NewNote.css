@@ -16,3 +16,18 @@
 h1 {
   text-align: center;
 }
+
+@media (max-width:600px) {
+  .new-note-input {
+    width: 60vw;
+  }
+  .ui.animated.button .visible {
+    display: none !important;
+  }
+}
+
+@media (max-width:400px) {
+  .new-note-input {
+    width: 80vw;
+  }
+}

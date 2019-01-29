@@ -17,3 +17,14 @@ note-list {
   text-decoration: line-through;
   background: #666;
 }
+
+@media (max-width:600px) {
+  .note {
+    width: 80vw;
+    height: 70px;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 10px !important;
+  }
+}
