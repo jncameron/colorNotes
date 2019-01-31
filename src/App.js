@@ -68,27 +68,23 @@ class App extends Component {
       
         <div className="App">
         <Particles className="particles" params={params} />
-        <div className="ui raised padded segment compact" id="header">
-          <Grid columns={2} stackable textAlign='center'>
-            <Grid.Row verticalAlign='middle'>
-              <Grid.Column>
-                <h1>Color Notes</h1>
-              </Grid.Column>
-              <Grid.Column>
-                <Button className="ui inverted animated violet"
-                  type="submit" 
-                  id="add-btn" 
-                  onClick={this.deleteNote}>
-                    <div className="visible content">clear completed</div>
-                    <div className="hidden content">
-                      <i className="trash alternate icon"></i>
-                    </div>
-                </Button>  
-              </Grid.Column>
+        <div className="ui padded segment" id="header">
+          <div className="header-grid">
+            <div className="h-col-1">
+              <h1>Color Notes</h1>
+            </div>
+            <div className="h-col-2">
+              <Button className="ui inverted violet"
+                type="submit" 
+                id="add-btn" 
+                onClick={this.deleteNote}>
+                  <div >
+                    <i className="trash alternate icon"></i>
+                  </div>
+              </Button>  
+            </div>
 
-            </Grid.Row>
-
-          </Grid>
+          </div>
         </div>
         <NewNote onSubmit={this.onNoteSubmit} />
         <Notes 

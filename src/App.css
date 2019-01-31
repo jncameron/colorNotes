@@ -2,13 +2,23 @@
   background-color: #6435c9
 }
 h1 {
-  width: 90vw;
   color: #FFF;
+  width: 80vw;
 }
 
-Button {
-  width: 10vw;
-  max-width: 100px;
+.header-grid {
+  display: grid;
+  grid: 70vw, 10vw;
+}
+
+.h-col-1 {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.h-col-2 {
+  grid-column: 2/2;
+  grid-row: 1/2;
 }
 
 .particles {
@@ -20,7 +30,11 @@ Button {
   background-color: #9be7ff
 }
 
-@media (max-width:600px) {
+@media (max-width:870px) {
+  .row {
+    flex-wrap: nowrap !important;
+  }
+
   .ui.compact.segment {
     display: block;
 
@@ -32,6 +46,9 @@ Button {
   }
 }
 
-@media (max-width:400px) {
+@media (max-width:650px) {
 
+  h1 {
+    width: 60vw;
+  }
 }

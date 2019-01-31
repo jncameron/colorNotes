@@ -17,7 +17,7 @@ h1 {
   text-align: center;
 }
 
-@media (max-width:600px) {
+@media (max-width:870px) {
   .new-note-input {
     width: 60vw;
   }

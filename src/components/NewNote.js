@@ -33,10 +33,9 @@ class NewNote extends Component {
               />
               <Button
                 type="submit" 
-                className="ui inverted animated violet"
+                className="ui inverted violet"
                 id="add-btn" >
-                  <div className="visible content">add</div>
-                  <div className="hidden content">
+                  <div>
                     <i className="right arrow icon"></i>
                   </div>
                 
