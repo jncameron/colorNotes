@@ -19,7 +19,7 @@ h1 {
 
 @media (max-width:870px) {
   .new-note-input {
-    width: 60vw;
+    width: 90vw;
   }
   .ui.animated.button .visible {
     display: none !important;
