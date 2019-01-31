@@ -5,6 +5,7 @@ import './Notes.css';
 
 class Notes extends Component {
 
+
   createNotes = (note) => {
     
     let colors = ['red','orange','yellow','olive','green','teal','blue','violet','purple','pink'];
@@ -65,9 +66,33 @@ class Notes extends Component {
     this.props.complete(key);
   }
 
+  newToOldSort = (a,b) => {
+    if(a.key < b.key)
+      return -1;
+    if(a.key > b.key)
+      return 1;
+    return 0
+  }
+
+  oldToNewSort = (a,b) => {
+    if(a.key > b.key)
+      return -1;
+    if(a.key < b.key)
+      return 1;
+    return 0
+  }
+
   render() {
     let noteEntries = this.props.entries;
     let listItems = noteEntries.map(this.createNotes);
+
+    if(this.props.sort === 'new') {
+      listItems.sort(this.newToOldSort)
+    }
+
+    if(this.props.sort === 'old') {
+      listItems.sort(this.oldToNewSort)
+    }
     
     return(
       <div className="note-list" >

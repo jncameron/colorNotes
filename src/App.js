@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
-import { Button, Grid } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import NewNote from './components/NewNote';
 import Notes from './components/Notes';
 import params from './particles';
@@ -18,7 +18,10 @@ class App extends Component {
 
   }
 
-  state = { notes: [] };
+  state = { 
+    notes: [],
+    sortBy: "new"
+  };
 
   deleteNote = (key) => {
     let filteredNotes = this.state.notes.filter(function (item) {
@@ -62,6 +65,14 @@ class App extends Component {
     });
   }
 
+  sortNotesNew = () => {
+    this.setState({sortBy: "new"})
+  }
+
+  sortNotesOld = () => {
+    this.setState({sortBy: "old"})
+  }
+
 
   render() {
     return (
@@ -74,7 +85,25 @@ class App extends Component {
               <h1>Color Notes</h1>
             </div>
             <div className="h-col-2">
-              <Button className="ui inverted violet"
+              <Button.Group>
+                <Button 
+                  className="ui inverted violet"
+                  type="submit" 
+                  id="sortnew-btn" 
+                  onClick={this.sortNotesNew}>
+                <Icon name="arrow up" />
+                </Button>
+                <Button.Or text="Sort"/>
+                <Button 
+                  className="ui inverted violet"
+                  type="submit" 
+                  id="sortold-btn" 
+                  onClick={this.sortNotesOld}>
+                  <Icon name="arrow down" />
+                </Button>
+              </Button.Group>
+              <Button 
+                className="ui inverted violet"
                 type="submit" 
                 id="add-btn" 
                 onClick={this.deleteNote}>
@@ -91,7 +120,8 @@ class App extends Component {
           entries={this.state.notes} 
           delete={this.deleteNote} 
           complete={this.completeNote} 
-          edit={this.editNote} 
+          edit={this.editNote}
+          sort={this.state.sortBy}
         />
         </div>
     );
