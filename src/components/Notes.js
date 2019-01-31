@@ -27,7 +27,7 @@ class Notes extends Component {
           <div 
           onClick={() => this.completed(note.key)} 
           id="new-note" 
-          className={'note ui inverted ' + randomColor + ' segment raised Tilt-inner'} 
+          className={'note ui inverted ' + randomColor + ' segment'} 
           ><strong>{note.text}</strong>
           </div>
           ))
@@ -48,7 +48,7 @@ class Notes extends Component {
               <div 
               onClick={() => this.delete(note.key)} 
               id="new-note" 
-              className={'note ui inverted segment grey raised Tilt-inner completed'} 
+              className={'note ui inverted segment grey completed'} 
               >{note.text}
               </div>
           )
@@ -70,7 +70,7 @@ class Notes extends Component {
     let listItems = noteEntries.map(this.createNotes);
     
     return(
-      <div className="note-list ui equal width divided grid" >
+      <div className="note-list" >
             {listItems}
       </div>
     );

@@ -1,15 +1,19 @@
-note-list {
+.note-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  margin-left: 5vw;
+  margin-right: 5vw;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-flow: dense;
 }
 
 .note {
   width: 250px;
-  height: 100px;
-  margin-top: 20px !important;
-  margin-bottom: 20px !important;
-  margin-left: 30px !important;
-  margin-right: 10px !important;
+  min-height: 70px;
+  height: fit-content;
+  margin: auto;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+
   overflow: auto;
 }
 
@@ -18,15 +22,20 @@ note-list {
   background: #666;
 }
 
+@media (max-width:1200px) {
+  .note-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 @media (max-width:870px) {
 
-  note-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 45vw, 45vw);
+  .note-list {
+
+    grid-template-columns: 50% 50%;
   }
   .note {
     width: 40vw;
-    height: 70px;
     margin-top: 0 !important;
     margin-left: 5vw !important;
     margin-right: 5vw !important;
@@ -36,16 +45,15 @@ note-list {
 
 @media (max-width:550px) {
 
-  note-list {
-    display: grid;
-    grid-template-columns: repeat(90vw);
+  .note-list {
+    grid-template-columns: 100%;
+    margin-left: 0;
   }
   .note {
-    width: 90vw;
-    height: 70px;
+    width: 95vw;
     margin-top: 0 !important;
-    margin-left: 5vw !important;
-    margin-right: 5vw !important;
+    margin-left: 1vw !important;
+    margin-right: 1vw !important;
     margin-bottom: 10px !important;
   }
 }

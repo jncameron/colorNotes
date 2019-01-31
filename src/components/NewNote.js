@@ -24,7 +24,7 @@ class NewNote extends Component {
       <div>
         <Segment className= "ui raised padded compact" id="note-input">
         <form onSubmit={this.onFormSubmit} >
-          <div className="note-list">
+          <div>
             <div className="ui input focus new-note-input">
               <input
                 ref={(a) => this._inputElement = a}
