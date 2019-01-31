@@ -52,11 +52,16 @@ i.icon {
     margin: 0 0;
   }
 
+  .ui.button {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
 }
 
 @media (max-width:650px) {
 
   h1 {
-    width: 60vw;
+    width: 50vw;
   }
 }

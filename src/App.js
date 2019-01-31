@@ -93,7 +93,6 @@ class App extends Component {
                   onClick={this.sortNotesNew}>
                 <Icon name="arrow up" />
                 </Button>
-                <Button.Or text="Sort"/>
                 <Button 
                   className="ui inverted violet"
                   type="submit" 
@@ -108,7 +107,7 @@ class App extends Component {
                 id="add-btn" 
                 onClick={this.deleteNote}>
                   <div >
-                    <i className="trash alternate icon"></i>
+                  <Icon name="trash alternate icon" />
                   </div>
               </Button>  
             </div>
