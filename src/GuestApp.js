@@ -6,10 +6,10 @@ import Notes from './components/Notes';
 import params from './particles';
 import paramsMobile from './particlesMobile';
 
-import './App.css';
+import './GuestApp.css';
 
 
-class App extends Component {
+class GuestApp extends Component {
 
   onNoteSubmit = (note) => {
     
@@ -127,12 +127,9 @@ class App extends Component {
           edit={this.editNote}
           sort={this.state.sortBy}
         />
-        <div>
-          <h1>THIS IS THE LOGGED IN APP</h1>
-        </div>
         </div>
     );
   }
 }
 
-export default App;
+export default GuestApp;
