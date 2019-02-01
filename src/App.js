@@ -107,7 +107,7 @@ class App extends Component {
                 id="add-btn" 
                 onClick={this.deleteNote}>
                   <div >
-                  <Icon name="trash alternate icon" />
+                  <Icon name="trash alternate" />
                   </div>
               </Button>  
             </div>

@@ -16,7 +16,7 @@ class Notes extends Component {
         (
           (window.innerWidth > 600 
           ?
-        <Tilt className="Tilt" key={note.key}>
+        <Tilt className="Tilt" key={note.key} completed={note.completed}>
           <div 
           onClick={() => this.completed(note.key)} 
           id="new-note" 
@@ -26,6 +26,8 @@ class Notes extends Component {
         </Tilt>
           :
           <div 
+          key={note.key}
+          completed={note.completed}
           onClick={() => this.completed(note.key)} 
           id="new-note" 
           className={'note ui inverted ' + randomColor + ' segment'} 
@@ -37,7 +39,7 @@ class Notes extends Component {
 
             ( window.innerWidth > 600 
             ?
-            <Tilt className="Tilt" key={note.key} >
+            <Tilt className="Tilt" key={note.key} completed={note.completed} >
               <div 
               onClick={() => this.delete(note.key)} 
               id="new-note" 
@@ -47,6 +49,8 @@ class Notes extends Component {
             </Tilt>
             :
               <div 
+              key={note.key}
+              completed={note.completed}
               onClick={() => this.delete(note.key)} 
               id="new-note" 
               className={'note ui inverted segment grey completed'} 
@@ -66,7 +70,27 @@ class Notes extends Component {
     this.props.complete(key);
   }
 
+  sortedList = () => {
+    let noteEntries = this.props.entries;
+    let listItems = noteEntries.map(this.createNotes);
+    let incomplete = listItems.filter(item => item.props.completed === false);
+    let complete = listItems.filter(item => item.props.completed === true);
+
+    if(this.props.sort === 'new') {
+      incomplete.sort(this.newToOldSort)
+      complete.sort(this.newToOldSort)
+      return [...incomplete,complete]
+    }
+
+    if(this.props.sort === 'old') {
+      incomplete.sort(this.oldToNewSort)
+      complete.sort(this.oldToNewSort)
+      return [...incomplete,complete]
+    }
+  }
+
   newToOldSort = (a,b) => {
+    
     if(a.key < b.key)
       return -1;
     if(a.key > b.key)
@@ -83,20 +107,11 @@ class Notes extends Component {
   }
 
   render() {
-    let noteEntries = this.props.entries;
-    let listItems = noteEntries.map(this.createNotes);
 
-    if(this.props.sort === 'new') {
-      listItems.sort(this.newToOldSort)
-    }
-
-    if(this.props.sort === 'old') {
-      listItems.sort(this.oldToNewSort)
-    }
-    
+    let sortedList = this.sortedList()
     return(
       <div className="note-list" >
-            {listItems}
+            {sortedList}
       </div>
     );
   }
