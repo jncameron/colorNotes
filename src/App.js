@@ -4,7 +4,10 @@ import { Button, Icon } from 'semantic-ui-react';
 import NewNote from './components/NewNote';
 import Notes from './components/Notes';
 import params from './particles';
+import paramsMobile from './particlesMobile';
+
 import './App.css';
+
 
 class App extends Component {
 
@@ -76,9 +79,11 @@ class App extends Component {
 
   render() {
     return (
-      
         <div className="App">
-        <Particles className="particles" params={params} />
+          {window.innerWidth > 870
+            ? <Particles className="particles" params={params} />
+            : <Particles className="particles" params={paramsMobile} />
+          }
         <div className="ui padded segment" id="header">
           <div className="header-grid">
             <div className="h-col-1">
