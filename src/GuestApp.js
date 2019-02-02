@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import { Button, Icon } from 'semantic-ui-react';
+import Header from './components/Header';
 import NewNote from './components/NewNote';
 import Notes from './components/Notes';
 import params from './particles';
@@ -77,48 +78,19 @@ class GuestApp extends Component {
   }
 
 
-  render() {
+  render(props) {
     return (
         <div className="App">
           {window.innerWidth > 870
             ? <Particles className="particles" params={params} />
             : <Particles className="particles" params={paramsMobile} />
           }
-        <div className="ui padded segment" id="header">
-          <div className="header-grid">
-            <div className="h-col-1">
-              <h1>Color Notes</h1>
-            </div>
-            <div className="h-col-2">
-              <Button.Group>
-                <Button 
-                  className="ui inverted violet"
-                  type="submit" 
-                  id="sortnew-btn" 
-                  onClick={this.sortNotesNew}>
-                <Icon name="arrow up" />
-                </Button>
-                <Button 
-                  className="ui inverted violet"
-                  type="submit" 
-                  id="sortold-btn" 
-                  onClick={this.sortNotesOld}>
-                  <Icon name="arrow down" />
-                </Button>
-              </Button.Group>
-              <Button 
-                className="ui inverted violet"
-                type="submit" 
-                id="add-btn" 
-                onClick={this.deleteNote}>
-                  <div >
-                  <Icon name="trash alternate" />
-                  </div>
-              </Button>  
-            </div>
-
-          </div>
-        </div>
+          <Header
+          sortNotesNew={this.sortNotesNew}
+          sortNotesOld={this.sortNotesOld}
+          deleteNote={this.deleteNote}
+          authenticated={this.props.authenticated}
+        />
         <NewNote onSubmit={this.onNoteSubmit} />
         <Notes 
           entries={this.state.notes} 

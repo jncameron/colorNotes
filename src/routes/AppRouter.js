@@ -4,28 +4,38 @@ import createHistory from 'history/createBrowserHistory';
 import NotFoundPage from '../components/NotFoundPage';
 import App from '../App';
 import GuestApp from '../GuestApp';
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
 
 export const history = createHistory();
 
-let loggedIn = true;
+let authenticated = false;
 
 const AppRouter = () => (
   <Router history={history}>
     <div>
       <Switch>
-        <PublicRoute path="/guest" component={GuestApp} exact={true}/>
-        <PrivateRoute path="/mynotes" component={App} />
-        <Route exact path="/" render={() => (
-          loggedIn 
-            ? (
-            <Redirect to="/mynotes/"/>
-            ) 
-            : (
-            <Redirect to="/guests/"/> 
-            )
-          )} />
+        <Route path="/guest" render={(props)=> 
+          authenticated 
+            ?
+              <Redirect to="/mynotes/" />
+            : 
+              <GuestApp {...props} authenticated={authenticated} />
+          }
+        />
+        <Route path="/mynotes" render={(props)=> 
+          authenticated 
+            ?
+              <App {...props} authenticated={authenticated} />  
+            :
+              <Redirect to="/guest/" />
+          }
+        />
+        <Route path="/" render={() => (
+          authenticated 
+            ?
+            <Redirect to="/mynotes/" /> 
+            :
+            <Redirect to="/guest/"/> 
+        )} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
