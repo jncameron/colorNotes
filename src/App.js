@@ -9,6 +9,20 @@ import paramsMobile from './particlesMobile';
 import './App.css';
 
 
+const initialState = {
+  notes: [],
+  sortBy: "new",
+  route: 'signin',
+  isSignedIn: false,
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    notesToComplete: 0,
+    joined: ''
+  }
+}
+
 class App extends Component {
 
   onNoteSubmit = (note) => {
@@ -21,10 +35,11 @@ class App extends Component {
 
   }
 
-  state = { 
-    notes: [],
-    sortBy: "new"
-  };
+  constructor() {
+    super();
+    this.state = initialState;
+  }
+  
 
   deleteNote = (key) => {
     let filteredNotes = this.state.notes.filter(function (item) {
