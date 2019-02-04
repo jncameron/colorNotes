@@ -1,0 +1,20 @@
+#signin-input {
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: #666
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.ui.input.sign {
+  display: flex !important;
+}
+
+.signin-input {
+  width: 500px;
+}

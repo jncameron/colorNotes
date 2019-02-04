@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Button, Icon, Modal, Segment } from 'semantic-ui-react';
+import Signin from './Signin';
 import './Header.css';
 
 class Header extends Component {
@@ -54,47 +55,7 @@ class Header extends Component {
                 </div>
             </Button>
             :
-            <Modal trigger={
-              <Button 
-              className="ui inverted green"
-              type="submit" 
-              id="add-btn" 
-              onClick={this.props.deleteNote}>
-                <div >
-                <Icon name="sign in" />
-                </div>
-              </Button>
-            }>
-            <Modal.Header className="ui center aligned">Sign In</Modal.Header>
-              <Modal.Content image>
-                <Modal.Description>
-                <Segment className= "ui raised padded compact" id="note-input">
-                  <form onSubmit={this.onFormSubmit} >
-                    <div>
-                      <div className="ui input focus new-note-input">
-                        <input
-                          ref={(a) => this._inputElement = a}
-                          placeholder="name"
-                          type="text"
-                        />
-                        <Button
-                          type="submit" 
-                          className="ui inverted violet"
-                          id="add-btn" >
-                            <div>
-                              <i className="right arrow icon"></i>
-                            </div>
-                          
-                        </Button>
-                      </div>
-                    </div>
-                    <div>
-                    </div>
-                  </form>
-                </Segment>
-                </Modal.Description>
-              </Modal.Content>
-            </Modal>
+            <Signin />
 
             }
           </div>
