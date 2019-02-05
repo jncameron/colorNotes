@@ -67,7 +67,8 @@ class Signin extends React.Component {
                     <Button
                       type="submit" 
                       className="ui inverted violet"
-                      id="signin-btn" >
+                      id="signin-btn" 
+                      onClick={this.onSubmitSignIn}>
                         <div>
                           <i className="right arrow icon"></i>
                         </div>
