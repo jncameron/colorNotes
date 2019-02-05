@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Button, Icon, Modal, Segment } from 'semantic-ui-react';
 import Signin from './Signin';
+import Register from './Register';
 import './Header.css';
 
 class Header extends Component {
@@ -55,7 +56,11 @@ class Header extends Component {
                 </div>
             </Button>
             :
-            <Signin />
+            <div>
+              <Signin />
+              <Register />
+            </div>
+
 
             }
           </div>

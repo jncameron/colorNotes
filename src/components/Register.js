@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Icon, Modal, Form } from 'semantic-ui-react';
-import './Signin.css';
+import './Register.css';
 
-class Signin extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,22 +44,30 @@ class Signin extends React.Component {
               <Button 
               className="ui inverted green"
               type="submit" 
-              id="signin-btn">
+              id="reg-btn">
                 <div >
-                <Icon name="sign in" />
+                <Icon name="signup" />
                 </div>
               </Button>
             }>
-            <Modal.Header className="ui center aligned">Sign In</Modal.Header>
+            <Modal.Header className="ui center aligned">Register</Modal.Header>
               <Modal.Content>
                 <Modal.Description>
                   <Form onSubmit={this.onFormSubmit}>
+                    <Form.Field>
+                      <label>Name</label>
+                      <input placeholder='John Smith'/>
+                    </Form.Field>
                     <Form.Field>
                       <label>Email Address</label>
                       <input placeholder='name@example.com'/>
                     </Form.Field>
                     <Form.Field>
                       <label>Password</label>
+                      <input type="password" className="signinInputs" />
+                    </Form.Field>
+                    <Form.Field>
+                      <label>Repeat Password</label>
                       <input type="password" className="signinInputs" />
                     </Form.Field>
                     <Form.Field>
@@ -81,4 +89,4 @@ class Signin extends React.Component {
   }
 }
 
-export default Signin;
+export default Register;
