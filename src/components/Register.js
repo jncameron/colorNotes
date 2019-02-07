@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Icon, Modal, Form } from 'semantic-ui-react';
+import { Route, Redirect } from 'react-router-dom';
 import './Register.css';
 
 class Register extends React.Component {
@@ -24,7 +25,8 @@ class Register extends React.Component {
     this.setState({password: event.target.value})
   }
 
-  onSubmitSignIn = () => {
+  onSubmitRegister = () => {
+    console.log('fetching')
     fetch('http://localhost:5500/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -36,15 +38,17 @@ class Register extends React.Component {
     })
       .then(response => response.json())
       .then(user => {
+        console.log("user is ", user)
         if (user.id) {
-          this.props.loadUser(user)
-          this.props.onRouteChange('home');
+          console.log(user.id)
+          this.props.authenticate(true)
         }
       })
+
   }
 
   render() {
-    const { onRouteChange } = this.props;
+    
     return (
             <Modal trigger={
               <Button 
@@ -89,7 +93,7 @@ class Register extends React.Component {
                       type="submit" 
                       className="ui inverted violet"
                       id="signin-btn" 
-                      onClick={this.onSubmitSignIn}
+                      onClick={this.onSubmitRegister}
                       value="Register">
                         <div>
                           <i className="right arrow icon"></i>

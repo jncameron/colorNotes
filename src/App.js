@@ -13,7 +13,6 @@ const initialState = {
   notes: [],
   sortBy: "new",
   route: 'signin',
-  isSignedIn: false,
   user: {
     id: '',
     name: '',

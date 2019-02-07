@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Icon, Modal, Segment } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import Signin from './Signin';
 import Register from './Register';
 import './Header.css';
@@ -58,7 +58,7 @@ class Header extends Component {
             :
             <div>
               <Signin />
-              <Register />
+              <Register authenticate={this.props.authenticate}/>
             </div>
 
 

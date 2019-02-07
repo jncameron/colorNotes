@@ -90,6 +90,7 @@ class GuestApp extends Component {
           sortNotesOld={this.sortNotesOld}
           deleteNote={this.deleteNote}
           authenticated={this.props.authenticated}
+          authenticate={this.props.authenticate}
         />
         <NewNote onSubmit={this.onNoteSubmit} />
         <Notes 
