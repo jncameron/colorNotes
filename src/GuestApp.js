@@ -1,106 +1,100 @@
-import React, { Component } from 'react';
-import Particles from 'react-particles-js';
-import { Button, Icon } from 'semantic-ui-react';
-import Header from './components/Header';
-import NewNote from './components/NewNote';
-import Notes from './components/Notes';
-import params from './particles';
-import paramsMobile from './particlesMobile';
+import React, { Component } from "react";
+import Particles from "react-particles-js";
+import { Button, Icon } from "semantic-ui-react";
+import Header from "./components/Header";
+import NewNote from "./components/NewNote";
+import Notes from "./components/Notes";
+import params from "./particles";
+import paramsMobile from "./particlesMobile";
 
-import './GuestApp.css';
-
+import "./GuestApp.css";
 
 class GuestApp extends Component {
-
-  onNoteSubmit = (note) => {
-    
+  onNoteSubmit = note => {
     this.setState(prevState => {
       return {
         notes: prevState.notes.concat(note)
-      }
+      };
     });
+  };
 
-  }
-
-  state = { 
+  state = {
     notes: [],
     sortBy: "new"
   };
 
-  deleteNote = (key) => {
-    let filteredNotes = this.state.notes.filter(function (item) {
-      return (item.completed === false)
+  deleteNote = key => {
+    let filteredNotes = this.state.notes.filter(function(item) {
+      return item.completed === false;
     });
-  
 
     this.setState({
       notes: filteredNotes
     });
-  }
+  };
 
-  editNote = (key) => {
+  editNote = key => {
     let noteToEdit = this.state.notes;
-    for (let i=0; i < noteToEdit.length; i++) {
-      if(noteToEdit[i]['key'] === key) {
-        noteToEdit[i]['edit'] = true;
+    for (let i = 0; i < noteToEdit.length; i++) {
+      if (noteToEdit[i]["key"] === key) {
+        noteToEdit[i]["edit"] = true;
       }
     }
-    this.setState({notes: noteToEdit})
-  }
+    this.setState({ notes: noteToEdit });
+  };
 
-  completeNote = (key) => {
-    let completedNote =  this.state.notes.filter(function (item) {
-
-      return (item.key === key);
+  completeNote = key => {
+    let completedNote = this.state.notes.filter(function(item) {
+      return item.key === key;
     });
 
-    completedNote = completedNote[0]
+    completedNote = completedNote[0];
     completedNote.completed = true;
-    
-    let filteredNotes = this.state.notes.filter(function (item) {
 
-      return (item.key !== key);
+    let filteredNotes = this.state.notes.filter(function(item) {
+      return item.key !== key;
     });
 
-    let newNoteList = [...filteredNotes, completedNote]
+    let newNoteList = [...filteredNotes, completedNote];
 
     this.setState({
       notes: newNoteList
     });
-  }
+  };
 
   sortNotesNew = () => {
-    this.setState({sortBy: "new"})
-  }
+    this.setState({ sortBy: "new" });
+  };
 
   sortNotesOld = () => {
-    this.setState({sortBy: "old"})
-  }
-
+    this.setState({ sortBy: "old" });
+  };
 
   render(props) {
     return (
-        <div className="App">
-          {window.innerWidth > 870
-            ? <Particles className="particles" params={params} />
-            : <Particles className="particles" params={paramsMobile} />
-          }
-          <Header
+      <div className="App">
+        {window.innerWidth > 870 ? (
+          <Particles className="particles" params={params} />
+        ) : (
+          <Particles className="particles" params={paramsMobile} />
+        )}
+        <Header
           sortNotesNew={this.sortNotesNew}
           sortNotesOld={this.sortNotesOld}
           deleteNote={this.deleteNote}
           authenticated={this.props.authenticated}
           authenticate={this.props.authenticate}
+          getUser={this.props.getUser}
         />
         <NewNote onSubmit={this.onNoteSubmit} />
-        <Notes 
-          entries={this.state.notes} 
-          delete={this.deleteNote} 
-          complete={this.completeNote} 
+        <Notes
+          entries={this.state.notes}
+          delete={this.deleteNote}
+          complete={this.completeNote}
           edit={this.editNote}
           sort={this.state.sortBy}
         />
-        </div>
+      </div>
     );
   }
 }

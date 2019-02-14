@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import { Segment, Button } from 'semantic-ui-react';
-import './NewNote.css';
+import React, { Component } from "react";
+import { Segment, Button } from "semantic-ui-react";
+import "./NewNote.css";
 
 class NewNote extends Component {
-
   onFormSubmit = e => {
     e.preventDefault();
-    if (this._inputElement.value !=="") {
-
+    if (this._inputElement.value !== "") {
       var newNote = {
         text: this._inputElement.value,
         key: Date.now(),
@@ -16,40 +14,42 @@ class NewNote extends Component {
       };
       this.props.onSubmit(newNote);
     }
-    this._inputElement.value ="";
-  }
+    this._inputElement.value = "";
+  };
 
   render() {
-    return(
+    let placeholder = "What's on your mind today?";
+    if (!!this.props.authenticated) {
+      placeholder = `What's on your mind, ${this.props.user.name}?`;
+    }
+    return (
       <div>
-        <Segment className= "ui raised padded compact" id="note-input">
-        <form onSubmit={this.onFormSubmit} >
-          <div>
-            <div className="ui input focus new-note-input">
-              <input
-                ref={(a) => this._inputElement = a}
-                placeholder="Write new note here..."
-                type="text"
-              />
-              <Button
-                type="submit" 
-                className="ui inverted violet"
-                id="add-btn" >
+        <Segment className="ui raised padded compact" id="note-input">
+          <form onSubmit={this.onFormSubmit}>
+            <div>
+              <div className="ui input focus new-note-input">
+                <input
+                  ref={a => (this._inputElement = a)}
+                  placeholder={placeholder}
+                  type="text"
+                />
+
+                <Button
+                  type="submit"
+                  className="ui inverted violet"
+                  id="add-btn"
+                >
                   <div>
-                    <i className="right arrow icon"></i>
+                    <i className="right arrow icon" />
                   </div>
-                
-              </Button>
+                </Button>
+              </div>
             </div>
-          </div>
-          <div>
-          </div>
-        </form>
-      </Segment>
+            <div />
+          </form>
+        </Segment>
       </div>
-
-
-    )
+    );
   }
 }
 
