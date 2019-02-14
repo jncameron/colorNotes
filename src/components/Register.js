@@ -29,7 +29,6 @@ class Register extends React.Component {
     })
       .then(response => response.json())
       .then(user => {
-        console.log("user is ", user);
         if (user.Id) {
           this.props.getUser({
             name: user.name,

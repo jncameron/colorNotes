@@ -60,7 +60,10 @@ class Header extends Component {
               </Button>
             ) : (
               <div>
-                <Signin />
+                <Signin
+                  authenticate={this.props.authenticate}
+                  getUser={this.props.getUser}
+                />
                 <Register
                   authenticate={this.props.authenticate}
                   getUser={this.props.getUser}
