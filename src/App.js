@@ -31,11 +31,9 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(notes => {
-        console.log(notes);
         let savedNotes = [];
         for (let n = 0; n < notes.length; n++) {
           let note = notes[n];
-          console.log(note.note_body);
           savedNotes.push({
             key: note.note_id,
             text: note.note_body,
@@ -71,6 +69,14 @@ class App extends Component {
       return item.completed === false;
     });
 
+    fetch("http://localhost:8081/deletenote", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: this.props.user.Id
+      })
+    });
+
     this.setState({
       notes: filteredNotes
     });
@@ -93,6 +99,14 @@ class App extends Component {
 
     completedNote = completedNote[0];
     completedNote.completed = true;
+
+    fetch("http://localhost:8081/completenote", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        note_id: completedNote.key.toString()
+      })
+    });
 
     let filteredNotes = this.state.notes.filter(function(item) {
       return item.key !== key;
