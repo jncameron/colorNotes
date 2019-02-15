@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount = loadNotes => {
-    fetch("http://localhost:8081/loadnotes", {
+    fetch("http://192.168.1.173:8081/loadnotes", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -47,7 +47,7 @@ class App extends Component {
 
   onNoteSubmit = note => {
     this.setState(prevState => {
-      fetch("http://localhost:8081/savenote", {
+      fetch("http://192.168.1.173:8081/savenote", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -69,7 +69,7 @@ class App extends Component {
       return item.completed === false;
     });
 
-    fetch("http://localhost:8081/deletenote", {
+    fetch("http://192.168.1.173:8081/deletenote", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -100,7 +100,7 @@ class App extends Component {
     completedNote = completedNote[0];
     completedNote.completed = true;
 
-    fetch("http://localhost:8081/completenote", {
+    fetch("http://192.168.1.173:8081/completenote", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

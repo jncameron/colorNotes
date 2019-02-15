@@ -3,7 +3,6 @@ import { Button, Icon } from "semantic-ui-react";
 import Signin from "./Signin";
 import Register from "./Register";
 import "./Header.css";
-import { userInfo } from "os";
 
 class Header extends Component {
   onFormSubmit = e => {

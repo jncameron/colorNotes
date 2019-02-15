@@ -18,7 +18,7 @@ class Register extends React.Component {
 
   onSubmitRegister = () => {
     console.log("fetching");
-    fetch("http://localhost:8081/register", {
+    fetch("http://192.168.1.173:8081/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
