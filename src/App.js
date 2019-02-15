@@ -5,6 +5,7 @@ import NewNote from "./components/NewNote";
 import Notes from "./components/Notes";
 import params from "./particles";
 import paramsMobile from "./particlesMobile";
+import uuid from "uuid/v1";
 
 import "./App.css";
 
@@ -15,18 +16,55 @@ const initialState = {
 };
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = initialState;
+  }
+
+  componentDidMount = loadNotes => {
+    fetch("http://localhost:8081/loadnotes", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: this.props.user.Id
+      })
+    })
+      .then(response => response.json())
+      .then(notes => {
+        console.log(notes);
+        let savedNotes = [];
+        for (let n = 0; n < notes.length; n++) {
+          let note = notes[n];
+          console.log(note.note_body);
+          savedNotes.push({
+            key: note.note_id,
+            text: note.note_body,
+            completed: note.Completed,
+            edit: note.Edit
+          });
+        }
+        this.setState({ notes: savedNotes });
+      });
+  };
+
   onNoteSubmit = note => {
     this.setState(prevState => {
+      fetch("http://localhost:8081/savenote", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: this.props.user.Id,
+          note_id: note.key.toString(),
+          note_body: note.text,
+          completed: false,
+          edit: false
+        })
+      });
       return {
         notes: prevState.notes.concat(note)
       };
     });
   };
-
-  constructor() {
-    super();
-    this.state = initialState;
-  }
 
   deleteNote = key => {
     let filteredNotes = this.state.notes.filter(function(item) {

@@ -33,7 +33,7 @@ class Register extends React.Component {
           this.props.getUser({
             name: user.name,
             email: user.email,
-            id: user.Id
+            Id: user.Id
           });
           this.props.authenticate(true);
         }

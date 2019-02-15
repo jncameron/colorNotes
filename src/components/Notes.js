@@ -1,74 +1,79 @@
-import React, {Component} from 'react';
-import Tilt from 'react-tilt';
+import React, { Component } from "react";
+import Tilt from "react-tilt";
 
-import './Notes.css'; 
+import "./Notes.css";
 
 class Notes extends Component {
-
-
-  createNotes = (note) => {
-    
-    let colors = ['red','orange','yellow','olive','green','teal','blue','violet','purple','pink'];
+  createNotes = note => {
+    let colors = [
+      "red",
+      "orange",
+      "yellow",
+      "olive",
+      "green",
+      "teal",
+      "blue",
+      "violet",
+      "purple",
+      "pink"
+    ];
     let randomColor = colors[note.key.toString().slice(-1)[0]];
-    return (
-        note.completed === false
-        ?
-        (
-          (window.innerWidth > 600 
-          ?
+    return note.completed === false ? (
+      window.innerWidth > 600 ? (
         <Tilt className="Tilt" key={note.key} completed={note.completed}>
-          <div 
-          onClick={() => this.completed(note.key)} 
-          id="new-note" 
-          className={'note ui inverted ' + randomColor + ' segment raised Tilt-inner'} 
-          ><strong>{note.text}</strong>
+          <div
+            onClick={() => this.completed(note.key)}
+            id="new-note"
+            className={
+              "note ui inverted " + randomColor + " segment raised Tilt-inner"
+            }
+          >
+            <strong>{note.text}</strong>
           </div>
         </Tilt>
-          :
-          <div 
+      ) : (
+        <div
           key={note.key}
           completed={note.completed}
-          onClick={() => this.completed(note.key)} 
-          id="new-note" 
-          className={'note ui inverted ' + randomColor + ' segment'} 
-          ><strong>{note.text}</strong>
-          </div>
-          ))
+          onClick={() => this.completed(note.key)}
+          id="new-note"
+          className={"note ui inverted " + randomColor + " segment"}
+        >
+          <strong>{note.text}</strong>
+        </div>
+      )
+    ) : window.innerWidth > 600 ? (
+      <Tilt className="Tilt" key={note.key} completed={note.completed}>
+        <div
+          onClick={() => this.delete(note.key)}
+          id="new-note"
+          className={
+            "note ui inverted segment grey raised Tilt-inner completed"
+          }
+        >
+          {note.text}
+        </div>
+      </Tilt>
+    ) : (
+      <div
+        key={note.key}
+        completed={note.completed}
+        onClick={() => this.delete(note.key)}
+        id="new-note"
+        className={"note ui inverted segment grey completed"}
+      >
+        {note.text}
+      </div>
+    );
+  };
 
-        : 
-
-            ( window.innerWidth > 600 
-            ?
-            <Tilt className="Tilt" key={note.key} completed={note.completed} >
-              <div 
-              onClick={() => this.delete(note.key)} 
-              id="new-note" 
-              className={'note ui inverted segment grey raised Tilt-inner completed'} 
-              >{note.text}
-              </div>
-            </Tilt>
-            :
-              <div 
-              key={note.key}
-              completed={note.completed}
-              onClick={() => this.delete(note.key)} 
-              id="new-note" 
-              className={'note ui inverted segment grey completed'} 
-              >{note.text}
-              </div>
-          )
-
-    )
-  }
-
-  delete = (key) => {
-
+  delete = key => {
     this.props.delete(key);
-  }
+  };
 
-  completed = (key) => {
+  completed = key => {
     this.props.complete(key);
-  }
+  };
 
   sortedList = () => {
     let noteEntries = this.props.entries;
@@ -76,44 +81,34 @@ class Notes extends Component {
     let incomplete = listItems.filter(item => item.props.completed === false);
     let complete = listItems.filter(item => item.props.completed === true);
 
-    if(this.props.sort === 'new') {
-      incomplete.sort(this.newToOldSort)
-      complete.sort(this.newToOldSort)
-      return [...incomplete,complete]
+    if (this.props.sort === "new") {
+      incomplete.sort(this.newToOldSort);
+      complete.sort(this.newToOldSort);
+      return [...incomplete, complete];
     }
 
-    if(this.props.sort === 'old') {
-      incomplete.sort(this.oldToNewSort)
-      complete.sort(this.oldToNewSort)
-      return [...incomplete,complete]
+    if (this.props.sort === "old") {
+      incomplete.sort(this.oldToNewSort);
+      complete.sort(this.oldToNewSort);
+      return [...incomplete, complete];
     }
-  }
+  };
 
-  newToOldSort = (a,b) => {
-    
-    if(a.key < b.key)
-      return -1;
-    if(a.key > b.key)
-      return 1;
-    return 0
-  }
+  newToOldSort = (a, b) => {
+    if (a.key < b.key) return -1;
+    if (a.key > b.key) return 1;
+    return 0;
+  };
 
-  oldToNewSort = (a,b) => {
-    if(a.key > b.key)
-      return -1;
-    if(a.key < b.key)
-      return 1;
-    return 0
-  }
+  oldToNewSort = (a, b) => {
+    if (a.key > b.key) return -1;
+    if (a.key < b.key) return 1;
+    return 0;
+  };
 
   render() {
-
-    let sortedList = this.sortedList()
-    return(
-      <div className="note-list" >
-            {sortedList}
-      </div>
-    );
+    let sortedList = this.sortedList();
+    return <div className="note-list">{sortedList}</div>;
   }
 }
 
