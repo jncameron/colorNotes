@@ -7,7 +7,13 @@ class Signin extends React.Component {
     super(props);
     this.state = {
       signInEmail: "",
-      signInPassword: ""
+      signInPassword: "",
+      emailLabel: "Email Address",
+      emailInput: "ui input focus",
+      passwordLabel: "Password",
+      passwordInput: "ui input focus",
+      emailError: "",
+      passwordError: ""
     };
   }
 
@@ -28,11 +34,29 @@ class Signin extends React.Component {
         password: this.state.signInPassword
       })
     })
-      .then(response => response.json())
-      .then(user => {
-        if (!!user.Id) {
-          this.props.getUser(user);
-          this.props.authenticate(true);
+      .then(response => response.text())
+      .then(text => {
+        try {
+          const user = JSON.parse(text);
+          if (!!user.Id) {
+            this.props.getUser(user);
+            this.props.authenticate(true);
+          }
+        } catch (err) {
+          console.log(text);
+          if (text === "Email not found") {
+            this.setState({
+              emailLabel: "Email Address Not Found",
+              emailInput: "ui input error",
+              emailError: "error"
+            });
+          } else if (text === "Invalid Password") {
+            this.setState({
+              passwordLabel: "Incorrect Password",
+              passwordInput: "ui input error",
+              passwordError: "error"
+            });
+          }
         }
       });
   };
@@ -53,20 +77,26 @@ class Signin extends React.Component {
           <Modal.Description>
             <Form onSubmit={this.onFormSubmit}>
               <Form.Field>
-                <label>Email Address</label>
-                <input
-                  type="email"
-                  placeholder="name@example.com"
-                  onChange={this.onEmailChange}
-                />
+                <label>{this.state.emailLabel}</label>
+                <div className={this.state.emailError}>
+                  <input
+                    type="email"
+                    placeholder="name@email.com"
+                    onChange={this.onEmailChange}
+                    className={this.state.emailInput}
+                  />
+                </div>
               </Form.Field>
               <Form.Field>
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="signinInputs"
-                  onChange={this.onPasswordChange}
-                />
+                <label>{this.state.passwordLabel}</label>
+                <div className={this.state.passwordError}>
+                  <input
+                    type="password"
+                    className="signinInputs"
+                    onChange={this.onPasswordChange}
+                    className={this.state.passwordInput}
+                  />
+                </div>
               </Form.Field>
               <Form.Field />
               <Button

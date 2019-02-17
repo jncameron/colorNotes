@@ -16,3 +16,8 @@
 .signin-input {
   width: 500px;
 }
+
+.error {
+  background: #FFF6F6 !important;
+  border-color: #E0B4B4 !important;
+}
