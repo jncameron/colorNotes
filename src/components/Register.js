@@ -17,10 +17,11 @@ class Register extends React.Component {
   };
 
   onSubmitRegister = () => {
-    console.log("fetching");
-    fetch("http://192.168.1.173:8081/register", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
+    fetch("http://localhost:8081/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         email: this.state.email,
         password: this.state.password,
@@ -28,16 +29,18 @@ class Register extends React.Component {
       })
     })
       .then(response => response.json())
+
       .then(user => {
-        if (user.Id) {
+        if (user._id) {
           this.props.getUser({
             name: user.name,
             email: user.email,
-            Id: user.Id
+            _id: user._id
           });
           this.props.authenticate(true);
         }
-      });
+      })
+      .catch(e => console.log(e));
   };
 
   render() {

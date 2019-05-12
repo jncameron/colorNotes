@@ -5,7 +5,6 @@ import NewNote from "./components/NewNote";
 import Notes from "./components/Notes";
 import params from "./particles";
 import paramsMobile from "./particlesMobile";
-import uuid from "uuid/v1";
 
 import "./App.css";
 
@@ -22,23 +21,24 @@ class App extends Component {
   }
 
   componentDidMount = loadNotes => {
-    fetch("http://192.168.1.173:8081/loadnotes", {
+    fetch("http://localhost:8081/loadnotes", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        user_id: this.props.user.Id
+        user_id: this.props.user._id
       })
     })
       .then(response => response.json())
       .then(notes => {
+        console.log(notes);
         let savedNotes = [];
         for (let n = 0; n < notes.length; n++) {
           let note = notes[n];
           savedNotes.push({
-            key: note.note_id,
+            key: note._id,
             text: note.note_body,
-            completed: note.Completed,
-            edit: note.Edit
+            completed: note.completed,
+            edit: note.edit
           });
         }
         this.setState({ notes: savedNotes });
@@ -47,11 +47,11 @@ class App extends Component {
 
   onNoteSubmit = note => {
     this.setState(prevState => {
-      fetch("http://192.168.1.173:8081/savenote", {
-        method: "post",
+      fetch("http://localhost:8081/notes", {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          user_id: this.props.user.Id,
+          user_id: this.props.user._id,
           note_id: note.key.toString(),
           note_body: note.text,
           completed: false,
@@ -69,11 +69,11 @@ class App extends Component {
       return item.completed === false;
     });
 
-    fetch("http://192.168.1.173:8081/deletenote", {
+    fetch("http://localhost:8081/deletenote", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: this.props.user.Id
+        id: this.props.user._id
       })
     });
 
@@ -100,7 +100,7 @@ class App extends Component {
     completedNote = completedNote[0];
     completedNote.completed = true;
 
-    fetch("http://192.168.1.173:8081/completenote", {
+    fetch("http://localhost:8081/completenote", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

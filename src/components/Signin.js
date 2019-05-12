@@ -26,7 +26,7 @@ class Signin extends React.Component {
   };
 
   onSubmitSignIn = () => {
-    fetch("http://192.168.1.173:8081/signin", {
+    fetch("http://localhost:8081/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -38,7 +38,7 @@ class Signin extends React.Component {
       .then(text => {
         try {
           const user = JSON.parse(text);
-          if (!!user.Id) {
+          if (!!user._id) {
             this.props.getUser(user);
             this.props.authenticate(true);
           }
