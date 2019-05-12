@@ -17,17 +17,20 @@ class Register extends React.Component {
   };
 
   onSubmitRegister = () => {
-    fetch("http://localhost:8081/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-        name: this.state.name
-      })
-    })
+    fetch(
+      "http://colornotesapiexpress-env.2gxiwn2ypw.ap-southeast-2.elasticbeanstalk.com/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: this.state.email,
+          password: this.state.password,
+          name: this.state.name
+        })
+      }
+    )
       .then(response => response.json())
 
       .then(user => {

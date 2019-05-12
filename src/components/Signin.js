@@ -26,14 +26,17 @@ class Signin extends React.Component {
   };
 
   onSubmitSignIn = () => {
-    fetch("http://localhost:8081/signin", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: this.state.signInEmail,
-        password: this.state.signInPassword
-      })
-    })
+    fetch(
+      "http://colornotesapiexpress-env.2gxiwn2ypw.ap-southeast-2.elasticbeanstalk.com/signin",
+      {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: this.state.signInEmail,
+          password: this.state.signInPassword
+        })
+      }
+    )
       .then(response => response.text())
       .then(text => {
         try {
