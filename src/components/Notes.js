@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "semantic-ui-react";
 
 import "./Notes.css";
 
@@ -32,27 +33,44 @@ class Notes extends Component {
           <div className="content" style={{ background: "#FFF8E1" }}>
             {note.completed ? (
               <p style={{ textDecoration: "line-through" }}>{note.text}</p>
+            ) : note.edit ? (
+              <div className="ui input fluid focus">
+                <input
+                  ref={a => (this._inputElement = a)}
+                  placeholder={note.text}
+                  type="text"
+                />
+                <Button
+                  type="submit"
+                  className="ui inverted violet"
+                  id="add-btn"
+                  onClick={() => {
+                    this.updateNote(note.key);
+                  }}
+                >
+                  <div>
+                    <i className="right arrow icon" />
+                  </div>
+                </Button>
+              </div>
             ) : (
               <strong>{note.text}</strong>
             )}
           </div>
           <div className="extra content" style={{ background: color }}>
             {note.clicked ? (
-              <div
-                className="ui three buttons"
-                style={{ background: "#FFECB3" }}
-              >
+              <div className="ui two buttons" style={{ background: "#FFECB3" }}>
                 <div
                   className="ui basic green button"
                   onClick={() => this.completed(note.key)}
                 >
                   <i className="check circle icon" />
                 </div>
-                <div className="ui basic yellow button">
+                <div
+                  className="ui basic yellow button"
+                  onClick={() => this.edit(note.key)}
+                >
                   <i className="edit icon" />
-                </div>
-                <div className="ui basic red button">
-                  <i className="trash alternate icon" />
                 </div>
               </div>
             ) : (
@@ -74,6 +92,15 @@ class Notes extends Component {
 
   clicked = key => {
     this.props.clicked(key);
+  };
+
+  edit = key => {
+    this.props.edit(key);
+  };
+
+  updateNote = key => {
+    const newText = this._inputElement.value;
+    this.props.updateNote(key, newText);
   };
 
   sortedList = () => {

@@ -12,6 +12,7 @@ import "./GuestApp.css";
 class GuestApp extends Component {
   onNoteSubmit = note => {
     this.setState(prevState => {
+      note.key = Date.now();
       return {
         notes: prevState.notes.concat(note)
       };
@@ -43,6 +44,18 @@ class GuestApp extends Component {
     this.setState({ notes: noteToEdit });
   };
 
+  updateNote = (key, newText) => {
+    let noteToEdit = this.state.notes;
+    for (let i = 0; i < noteToEdit.length; i++) {
+      if (noteToEdit[i]["key"] === key) {
+        noteToEdit[i]["text"] = newText;
+        noteToEdit[i]["edit"] = false;
+        noteToEdit[i]["clicked"] = false;
+      }
+    }
+    this.setState({ notes: noteToEdit });
+  };
+
   completeNote = key => {
     let completedNote = this.state.notes.filter(function(item) {
       return item.key === key;
@@ -50,6 +63,7 @@ class GuestApp extends Component {
 
     completedNote = completedNote[0];
     completedNote.completed = true;
+    completedNote.color = "#d3d3d3";
 
     let filteredNotes = this.state.notes.filter(function(item) {
       return item.key !== key;
@@ -113,6 +127,7 @@ class GuestApp extends Component {
           edit={this.editNote}
           sort={this.state.sortBy}
           clicked={this.clickNote}
+          updateNote={this.updateNote}
         />
       </div>
     );

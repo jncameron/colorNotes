@@ -1,8 +1,8 @@
 #header {
-  background-color: #6435c9
+  background-color: #705aa1;
 }
 h1 {
-  color: #FFF;
+  color: #fff;
   width: 60vw;
 }
 
@@ -27,21 +27,21 @@ h1 {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: lightgreen;
+  background-color: rgb(164, 144, 238);
 }
 
 .ui.buttons .or:before {
   border-radius: 40% !important;
   width: fit-content !important;
   background-color: #a291fb !important;
-  color: #FFF !important;
+  color: #fff !important;
 }
 
 i.icon {
   margin: 0 !important;
 }
 
-@media (max-width:870px) {
+@media (max-width: 870px) {
   .row {
     flex-wrap: nowrap !important;
   }
@@ -56,11 +56,9 @@ i.icon {
     padding-left: 8px !important;
     padding-right: 8px !important;
   }
-
 }
 
-@media (max-width:650px) {
-
+@media (max-width: 650px) {
   h1 {
     width: 50vw;
   }
