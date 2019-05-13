@@ -3,6 +3,8 @@ import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import { Route, Redirect } from "react-router-dom";
 import "./Register.css";
 
+const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+
 class Register extends React.Component {
   onNameChange = event => {
     this.setState({ name: event.target.value });
@@ -17,20 +19,17 @@ class Register extends React.Component {
   };
 
   onSubmitRegister = () => {
-    fetch(
-      "http://colornotesapiexpress-env.2gxiwn2ypw.ap-southeast-2.elasticbeanstalk.com/users",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password,
-          name: this.state.name
-        })
-      }
-    )
+    fetch(`${URL}users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name
+      })
+    })
       .then(response => response.json())
 
       .then(user => {

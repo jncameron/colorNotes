@@ -5,6 +5,9 @@ import "./Notes.css";
 
 class Notes extends Component {
   createNotes = note => {
+    const getRandomInt = max => {
+      return Math.floor(Math.random() * Math.floor(max));
+    };
     let colors = [
       "red",
       "orange",
@@ -17,7 +20,8 @@ class Notes extends Component {
       "purple",
       "pink"
     ];
-    let randomColor = colors[note.key.toString().slice(-1)[0]];
+    let randNum = getRandomInt(10);
+    let color = note.color;
     return note.completed === false ? (
       window.innerWidth > 600 ? (
         <Tilt className="Tilt" key={note.key} completed={note.completed}>
@@ -25,7 +29,7 @@ class Notes extends Component {
             onClick={() => this.completed(note.key)}
             id="new-note"
             className={
-              "note ui inverted " + randomColor + " segment raised Tilt-inner"
+              "note ui inverted " + color + " segment raised Tilt-inner"
             }
           >
             <strong>{note.text}</strong>
@@ -37,7 +41,7 @@ class Notes extends Component {
           completed={note.completed}
           onClick={() => this.completed(note.key)}
           id="new-note"
-          className={"note ui inverted " + randomColor + " segment"}
+          className={"note ui inverted " + color + " segment"}
         >
           <strong>{note.text}</strong>
         </div>

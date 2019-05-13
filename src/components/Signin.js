@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import "./Signin.css";
 
+const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+
 class Signin extends React.Component {
   constructor(props) {
     super(props);
@@ -26,17 +28,14 @@ class Signin extends React.Component {
   };
 
   onSubmitSignIn = () => {
-    fetch(
-      "http://colornotesapiexpress-env.2gxiwn2ypw.ap-southeast-2.elasticbeanstalk.com/signin",
-      {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: this.state.signInEmail,
-          password: this.state.signInPassword
-        })
-      }
-    )
+    fetch(`${URL}signin`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.signInEmail,
+        password: this.state.signInPassword
+      })
+    })
       .then(response => response.text())
       .then(text => {
         try {

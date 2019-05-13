@@ -2,8 +2,9 @@
   "name": "color-notes",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jncameron.github.io/colorNotes",
+  "homepage": "http://colornotes.info",
   "dependencies": {
+    "concurrently": "^4.1.0",
     "gh-pages": "^2.0.1",
     "history": "^4.7.2",
     "react": "^16.7.0",

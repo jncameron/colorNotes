@@ -8,6 +8,8 @@ import paramsMobile from "./particlesMobile";
 
 import "./App.css";
 
+const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+
 const initialState = {
   notes: [],
   sortBy: "new",
@@ -21,16 +23,13 @@ class App extends Component {
   }
 
   componentDidMount = loadNotes => {
-    fetch(
-      "http://colornotesapiexpress-env.2gxiwn2ypw.ap-southeast-2.elasticbeanstalk.com/loadnotes",
-      {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_id: this.props.user._id
-        })
-      }
-    )
+    fetch(`${URL}loadnotes`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: this.props.user._id
+      })
+    })
       .then(response => response.json())
       .then(notes => {
         console.log(notes);
@@ -50,19 +49,16 @@ class App extends Component {
 
   onNoteSubmit = note => {
     this.setState(prevState => {
-      fetch(
-        "http://colornotesapiexpress-env.2gxiwn2ypw.ap-southeast-2.elasticbeanstalk.com/notes",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user_id: this.props.user._id,
-            note_body: note.text,
-            completed: false,
-            edit: false
-          })
-        }
-      );
+      fetch(`${URL}notes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: this.props.user._id,
+          note_body: note.text,
+          completed: false,
+          edit: false
+        })
+      });
       return {
         notes: prevState.notes.concat(note)
       };
@@ -74,16 +70,13 @@ class App extends Component {
       return item.completed === false;
     });
 
-    fetch(
-      "http://colornotesapiexpress-env.2gxiwn2ypw.ap-southeast-2.elasticbeanstalk.com/deletenote",
-      {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: this.props.user._id
-        })
-      }
-    );
+    fetch(`${URL}deletenote`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: this.props.user._id
+      })
+    });
 
     this.setState({
       notes: filteredNotes
@@ -108,16 +101,13 @@ class App extends Component {
     completedNote = completedNote[0];
     completedNote.completed = true;
 
-    fetch(
-      "http://colornotesapiexpress-env.2gxiwn2ypw.ap-southeast-2.elasticbeanstalk.com/completenote",
-      {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          note_id: completedNote.key.toString()
-        })
-      }
-    );
+    fetch(`${URL}completenote`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        note_id: completedNote.key.toString()
+      })
+    });
 
     let filteredNotes = this.state.notes.filter(function(item) {
       return item.key !== key;

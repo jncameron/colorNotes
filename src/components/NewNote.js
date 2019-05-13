@@ -8,9 +8,9 @@ class NewNote extends Component {
     if (this._inputElement.value !== "") {
       var newNote = {
         text: this._inputElement.value,
-        key: Date.now(),
         edit: false,
-        completed: false
+        completed: false,
+        color: "yellow"
       };
       this.props.onSubmit(newNote);
     }
