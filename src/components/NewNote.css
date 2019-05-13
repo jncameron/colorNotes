@@ -6,7 +6,12 @@
   margin: auto;
   margin-top: 50px;
   margin-bottom: 50px;
-  background-color: #666
+  background-color: #666;
+}
+
+#note-color {
+  margin-left: 10px;
+  min-width: 40px;
 }
 
 #add-btn {
@@ -17,7 +22,7 @@ h1 {
   text-align: center;
 }
 
-@media (max-width:870px) {
+@media (max-width: 870px) {
   .new-note-input {
     width: 90vw;
   }
@@ -26,7 +31,7 @@ h1 {
   }
 }
 
-@media (max-width:400px) {
+@media (max-width: 400px) {
   .new-note-input {
     width: 80vw;
   }

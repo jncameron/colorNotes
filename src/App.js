@@ -40,7 +40,8 @@ class App extends Component {
             key: note._id,
             text: note.note_body,
             completed: note.completed,
-            edit: note.edit
+            edit: note.edit,
+            color: note.color
           });
         }
         this.setState({ notes: savedNotes });
@@ -56,7 +57,8 @@ class App extends Component {
           user_id: this.props.user._id,
           note_body: note.text,
           completed: false,
-          edit: false
+          edit: false,
+          color: note.color
         })
       });
       return {

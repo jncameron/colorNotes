@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import { Segment, Button } from "semantic-ui-react";
 import "./NewNote.css";
 
+const initialState = {
+  color: "red"
+};
+
 class NewNote extends Component {
+  constructor() {
+    super();
+    this.state = initialState;
+  }
+
   onFormSubmit = e => {
     e.preventDefault();
     if (this._inputElement.value !== "") {
@@ -10,11 +19,28 @@ class NewNote extends Component {
         text: this._inputElement.value,
         edit: false,
         completed: false,
-        color: "yellow"
+        color: this.state.color
       };
       this.props.onSubmit(newNote);
     }
     this._inputElement.value = "";
+  };
+
+  chooseColor = () => {
+    let colors = [
+      "red",
+      "orange",
+      "yellow",
+      "olive",
+      "green",
+      "teal",
+      "blue",
+      "violet",
+      "purple",
+      "pink"
+    ];
+    let currentColorIndex = colors.indexOf(this.state.color) + 1;
+    this.setState({ color: colors[currentColorIndex] });
   };
 
   render() {
@@ -33,7 +59,11 @@ class NewNote extends Component {
                   placeholder={placeholder}
                   type="text"
                 />
-
+                <div
+                  className={`ui ${this.state.color} label`}
+                  id="note-color"
+                  onClick={this.chooseColor}
+                />
                 <Button
                   type="submit"
                   className="ui inverted violet"
