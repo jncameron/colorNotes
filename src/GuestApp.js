@@ -62,6 +62,25 @@ class GuestApp extends Component {
     });
   };
 
+  clickNote = key => {
+    let clickNote = this.state.notes.filter(function(item) {
+      return item.key === key;
+    });
+
+    clickNote = clickNote[0];
+    clickNote.clicked = !clickNote.clicked;
+
+    let filteredNotes = this.state.notes.filter(function(item) {
+      return item.key !== key;
+    });
+
+    let newNoteList = [...filteredNotes, clickNote];
+
+    this.setState({
+      notes: newNoteList
+    });
+  };
+
   sortNotesNew = () => {
     this.setState({ sortBy: "new" });
   };
@@ -93,6 +112,7 @@ class GuestApp extends Component {
           complete={this.completeNote}
           edit={this.editNote}
           sort={this.state.sortBy}
+          clicked={this.clickNote}
         />
       </div>
     );

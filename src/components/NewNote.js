@@ -19,7 +19,8 @@ class NewNote extends Component {
         text: this._inputElement.value,
         edit: false,
         completed: false,
-        color: this.state.color
+        color: this.state.color,
+        clicked: false
       };
       this.props.onSubmit(newNote);
     }

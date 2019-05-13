@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import Tilt from "react-tilt";
 
 import "./Notes.css";
 
 class Notes extends Component {
   createNotes = note => {
-    const getRandomInt = max => {
-      return Math.floor(Math.random() * Math.floor(max));
-    };
     let colors = [
       "red",
       "orange",
@@ -20,53 +16,50 @@ class Notes extends Component {
       "purple",
       "pink"
     ];
-    let randNum = getRandomInt(10);
     let color = note.color;
-    return note.completed === false ? (
-      window.innerWidth > 600 ? (
-        <Tilt className="Tilt" key={note.key} completed={note.completed}>
-          <div
-            onClick={() => this.completed(note.key)}
-            id="new-note"
-            className={
-              "note ui inverted " + color + " segment raised Tilt-inner"
-            }
-          >
-            <strong>{note.text}</strong>
-          </div>
-        </Tilt>
-      ) : (
-        <div
-          key={note.key}
-          completed={note.completed}
-          onClick={() => this.completed(note.key)}
-          id="new-note"
-          className={"note ui inverted " + color + " segment"}
-        >
-          <strong>{note.text}</strong>
-        </div>
-      )
-    ) : window.innerWidth > 600 ? (
-      <Tilt className="Tilt" key={note.key} completed={note.completed}>
-        <div
-          onClick={() => this.delete(note.key)}
-          id="new-note"
-          className={
-            "note ui inverted segment grey raised Tilt-inner completed"
-          }
-        >
-          {note.text}
-        </div>
-      </Tilt>
-    ) : (
+    return (
       <div
+        className="cards"
         key={note.key}
         completed={note.completed}
-        onClick={() => this.delete(note.key)}
-        id="new-note"
-        className={"note ui inverted segment grey completed"}
+        clicked={note.clicked}
       >
-        {note.text}
+        <div
+          onClick={() => this.clicked(note.key)}
+          id="new-note"
+          className={"ui " + color + " card fluid"}
+        >
+          <div className="content" style={{ background: "#FFF8E1" }}>
+            {note.completed ? (
+              <p style={{ textDecoration: "line-through" }}>{note.text}</p>
+            ) : (
+              <strong>{note.text}</strong>
+            )}
+          </div>
+          <div className="extra content" style={{ background: color }}>
+            {note.clicked ? (
+              <div
+                className="ui three buttons"
+                style={{ background: "#FFECB3" }}
+              >
+                <div
+                  className="ui basic green button"
+                  onClick={() => this.completed(note.key)}
+                >
+                  <i className="check circle icon" />
+                </div>
+                <div className="ui basic yellow button">
+                  <i className="edit icon" />
+                </div>
+                <div className="ui basic red button">
+                  <i className="trash alternate icon" />
+                </div>
+              </div>
+            ) : (
+              <p />
+            )}
+          </div>
+        </div>
       </div>
     );
   };
@@ -77,6 +70,10 @@ class Notes extends Component {
 
   completed = key => {
     this.props.complete(key);
+  };
+
+  clicked = key => {
+    this.props.clicked(key);
   };
 
   sortedList = () => {

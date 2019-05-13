@@ -49,22 +49,33 @@ class App extends Component {
   };
 
   onNoteSubmit = note => {
-    this.setState(prevState => {
-      fetch(`${URL}notes`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_id: this.props.user._id,
-          note_body: note.text,
-          completed: false,
-          edit: false,
-          color: note.color
-        })
+    fetch(`${URL}notes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: this.props.user._id,
+        note_body: note.text,
+        completed: false,
+        edit: false,
+        clicked: false,
+        color: note.color
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        this.setState(prevState => {
+          return {
+            notes: prevState.notes.concat({
+              user_id: res.user_id,
+              key: res._id,
+              text: res.note_body,
+              completed: res.completed,
+              edit: res.edit,
+              color: res.color
+            })
+          };
+        });
       });
-      return {
-        notes: prevState.notes.concat(note)
-      };
-    });
   };
 
   deleteNote = key => {
@@ -102,6 +113,7 @@ class App extends Component {
 
     completedNote = completedNote[0];
     completedNote.completed = true;
+    completedNote.color = "#d3d3d3";
 
     fetch(`${URL}completenote`, {
       method: "post",
@@ -116,6 +128,25 @@ class App extends Component {
     });
 
     let newNoteList = [...filteredNotes, completedNote];
+
+    this.setState({
+      notes: newNoteList
+    });
+  };
+
+  clickNote = key => {
+    let clickNote = this.state.notes.filter(function(item) {
+      return item.key === key;
+    });
+
+    clickNote = clickNote[0];
+    clickNote.clicked = !clickNote.clicked;
+
+    let filteredNotes = this.state.notes.filter(function(item) {
+      return item.key !== key;
+    });
+
+    let newNoteList = [...filteredNotes, clickNote];
 
     this.setState({
       notes: newNoteList
@@ -158,6 +189,7 @@ class App extends Component {
           complete={this.completeNote}
           edit={this.editNote}
           sort={this.state.sortBy}
+          clicked={this.clickNote}
         />
       </div>
     );
