@@ -12,7 +12,7 @@ class Header extends Component {
 
   render(props) {
     return (
-      <div className="ui padded segment" id="header">
+      <div className="ui padded basic segment" id="header">
         <div className="header-grid">
           <div className="h-col-1">
             <h1>Color Notes</h1>

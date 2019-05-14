@@ -17,18 +17,32 @@ class Notes extends Component {
 
   createNotes = note => {
     let colors = [
-      "red",
-      "orange",
-      "yellow",
-      "olive",
-      "green",
-      "teal",
-      "blue",
-      "violet",
-      "purple",
-      "pink"
+      { red: "#B03060" },
+      { orange: "#FE9A76" },
+      { yellow: "#FFD700" },
+      { olive: "#32CD32" },
+      { green: "#016936" },
+      { teal: "#008080" },
+      { blue: "#0E6EB8" },
+      { violet: "#EE82EE" },
+      { purple: "#B413EC" },
+      { pink: "#FF1493" }
     ];
     let color = note.color;
+    console.log("color is: " + color);
+
+    let selectedColor = () => {
+      console.log("running");
+      for (let col in colors) {
+        console.log(colors[col]);
+        console.log(Object.keys(colors[col]));
+        console.log(this.color);
+        if (Object.keys(colors[col])[0] === color) {
+          console.log(color);
+          return Object.values(colors[col])[0];
+        }
+      }
+    };
     return (
       <div
         className="cards"
@@ -41,12 +55,16 @@ class Notes extends Component {
           id="new-note"
           className={"ui " + color + " card fluid"}
         >
-          <div className="content" style={{ background: "#FFF8E1" }}>
+          <div
+            className="content"
+            style={{ background: selectedColor(), opacity: 0.9 }}
+          >
             {note.completed ? (
               <p style={{ textDecoration: "line-through" }}>{note.text}</p>
             ) : note.edit ? (
               <div className="ui input fluid focus">
                 <input
+                  autoFocus
                   ref={a => (this._inputElement = a)}
                   value={this.state.inputValue}
                   onChange={this.handleUpdate}
@@ -69,7 +87,10 @@ class Notes extends Component {
               <strong>{note.text}</strong>
             )}
           </div>
-          <div className="extra content" style={{ background: color }}>
+          <div
+            className="extra content"
+            style={{ background: selectedColor() }}
+          >
             {note.clicked ? (
               <div className="ui two buttons" style={{ background: "#FFECB3" }}>
                 <div

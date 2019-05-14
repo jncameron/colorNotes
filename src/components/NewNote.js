@@ -3,7 +3,8 @@ import { Segment, Button } from "semantic-ui-react";
 import "./NewNote.css";
 
 const initialState = {
-  color: "red"
+  color: "red",
+  colorCode: "#B03060"
 };
 
 class NewNote extends Component {
@@ -40,8 +41,24 @@ class NewNote extends Component {
       "purple",
       "pink"
     ];
+    let colorCodes = [
+      "#B03060",
+      "#FE9A76",
+      "#FFD700",
+      "#32CD32",
+      "#016936",
+      "#008080",
+      "#0E6EB8",
+      "#EE82EE",
+      "#B413EC",
+      "#FF1493"
+    ];
     let currentColorIndex = colors.indexOf(this.state.color) + 1;
-    this.setState({ color: colors[currentColorIndex] });
+    this.setState({
+      color: colors[currentColorIndex],
+      colorCode: colorCodes[currentColorIndex]
+    });
+    return colorCodes[currentColorIndex];
   };
 
   render() {
@@ -61,7 +78,8 @@ class NewNote extends Component {
                   type="text"
                 />
                 <div
-                  className={`ui ${this.state.color} label`}
+                  className={`ui label`}
+                  style={{ background: this.state.colorCode }}
                   id="note-color"
                   onClick={this.chooseColor}
                 />

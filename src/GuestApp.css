@@ -4,21 +4,21 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #9be7ff
+  background-color: #a9a9a9;
 }
 
 .ui.buttons .or:before {
   border-radius: 40% !important;
   width: fit-content !important;
   background-color: #a291fb !important;
-  color: #FFF !important;
+  color: #fff !important;
 }
 
 i.icon {
   margin: 0 !important;
 }
 
-@media (max-width:935px) {
+@media (max-width: 935px) {
   .row {
     flex-wrap: nowrap !important;
   }
@@ -33,18 +33,15 @@ i.icon {
     padding-left: 8px !important;
     padding-right: 8px !important;
   }
-
 }
 
-@media (max-width:650px) {
-
+@media (max-width: 650px) {
   h1 {
     width: 50vw;
   }
 }
 
-@media (max-width:500px) {
-
+@media (max-width: 500px) {
   h1 {
     width: 40vw;
   }

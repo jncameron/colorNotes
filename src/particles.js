@@ -1,67 +1,112 @@
 const params = {
   particles: {
     number: {
-      value: 160,
+      value: 6,
       density: {
-        enable: false
+        enable: true,
+        value_area: 800
+      }
+    },
+    color: {
+      value: "#1b1e34"
+    },
+    shape: {
+      type: "polygon",
+      stroke: {
+        width: 0,
+        color: "#000"
+      },
+      polygon: {
+        nb_sides: 4
+      },
+      image: {
+        src: "img/github.svg",
+        width: 100,
+        height: 100
+      }
+    },
+    opacity: {
+      value: 0.3,
+      random: true,
+      anim: {
+        enable: false,
+        speed: 1,
+        opacity_min: 0.1,
+        sync: false
       }
     },
     size: {
-      value: 30,
-      random: true,
+      value: 160,
+      random: false,
       anim: {
-        speed: 4,
-        size_min: 1
+        enable: true,
+        speed: 10,
+        size_min: 40,
+        sync: false
       }
     },
     line_linked: {
-      enable: false
+      enable: false,
+      distance: 200,
+      color: "#ffffff",
+      opacity: 1,
+      width: 2
     },
     move: {
-      random: true,
-      speed: 1,
-      direction: "top",
-      out_mode: "out"
-    },
-    color: {
-      value: [
-        "#db2828",
-        "#b5cc18",
-        "#f2711c",
-        "#fbbd08",
-        "#21ba45",
-        "#00b5ad",
-        "#2185d0",
-        "#6435c9",
-        "#a333c8",
-        "#e03997"
-      ]
+      enable: true,
+      speed: 2,
+      direction: "none",
+      random: false,
+      straight: false,
+      out_mode: "out",
+      bounce: false,
+      attract: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 1200
+      }
     }
   },
   interactivity: {
+    detect_on: "canvas",
     events: {
       onhover: {
-        enable: true,
-        mode: "bubble"
+        enable: false,
+        mode: "grab"
       },
       onclick: {
-        enable: true,
-        mode: "repulse"
-      }
+        enable: false,
+        mode: "push"
+      },
+      resize: true
     },
     modes: {
+      grab: {
+        distance: 400,
+        line_linked: {
+          opacity: 1
+        }
+      },
       bubble: {
-        distance: 250,
+        distance: 400,
+        size: 40,
         duration: 2,
-        size: 10,
-        opacity: 0
+        opacity: 8,
+        speed: 3
       },
       repulse: {
         distance: 200,
-        duration: 2
+        duration: 0.4
+      },
+      push: {
+        particles_nb: 4
+      },
+      remove: {
+        particles_nb: 2
       }
     }
-  }
+  },
+  retina_detect: true
 };
 
 export default params;
