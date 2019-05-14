@@ -20,8 +20,7 @@
 }
 
 .card {
-  margin-left: 10px !important;
-  margin-right: 10px !important;
+  min-height: 150px !important;
 }
 
 .completed {
@@ -69,5 +68,8 @@
     margin-left: 1vw !important;
     margin-right: 1vw !important;
     margin-bottom: 10px !important;
+  }
+  .card {
+    min-height: 80px !important;
   }
 }

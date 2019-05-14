@@ -4,6 +4,17 @@ import { Button } from "semantic-ui-react";
 import "./Notes.css";
 
 class Notes extends Component {
+  constructor() {
+    super();
+    this.state = { inputValue: "" };
+  }
+
+  handleUpdate = event => {
+    this.setState({
+      inputValue: event.target.value
+    });
+  };
+
   createNotes = note => {
     let colors = [
       "red",
@@ -37,7 +48,8 @@ class Notes extends Component {
               <div className="ui input fluid focus">
                 <input
                   ref={a => (this._inputElement = a)}
-                  placeholder={note.text}
+                  value={this.state.inputValue}
+                  onChange={this.handleUpdate}
                   type="text"
                 />
                 <Button
@@ -68,7 +80,7 @@ class Notes extends Component {
                 </div>
                 <div
                   className="ui basic yellow button"
-                  onClick={() => this.edit(note.key)}
+                  onClick={() => this.edit(note)}
                 >
                   <i className="edit icon" />
                 </div>
@@ -94,8 +106,9 @@ class Notes extends Component {
     this.props.clicked(key);
   };
 
-  edit = key => {
-    this.props.edit(key);
+  edit = note => {
+    this.setState({ inputValue: note.text });
+    this.props.edit(note.key);
   };
 
   updateNote = key => {

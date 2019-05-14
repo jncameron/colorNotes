@@ -106,6 +106,27 @@ class App extends Component {
     this.setState({ notes: noteToEdit });
   };
 
+  updateNote = (key, newText) => {
+    let noteToEdit = this.state.notes;
+    for (let i = 0; i < noteToEdit.length; i++) {
+      if (noteToEdit[i]["key"] === key) {
+        noteToEdit[i]["text"] = newText;
+        noteToEdit[i]["edit"] = false;
+        noteToEdit[i]["clicked"] = false;
+      }
+    }
+    fetch(`${URL}updatenote`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        note_id: key.toString(),
+        updatedText: newText
+      })
+    });
+
+    this.setState({ notes: noteToEdit });
+  };
+
   completeNote = key => {
     let completedNote = this.state.notes.filter(function(item) {
       return item.key === key;
@@ -190,6 +211,7 @@ class App extends Component {
           edit={this.editNote}
           sort={this.state.sortBy}
           clicked={this.clickNote}
+          updateNote={this.updateNote}
         />
       </div>
     );
