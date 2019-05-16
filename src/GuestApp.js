@@ -62,8 +62,7 @@ class GuestApp extends Component {
     });
 
     completedNote = completedNote[0];
-    completedNote.completed = true;
-    completedNote.color = "#d3d3d3";
+    completedNote.completed = !completedNote.completed;
 
     let filteredNotes = this.state.notes.filter(function(item) {
       return item.key !== key;

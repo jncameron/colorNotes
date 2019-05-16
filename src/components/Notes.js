@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Button } from "semantic-ui-react";
-
+import EditingNote from "./EditingNote";
+import NoteClicked from "./NoteClicked";
 import "./Notes.css";
 
 class Notes extends Component {
@@ -26,7 +26,8 @@ class Notes extends Component {
       { blue: "#0E6EB8" },
       { violet: "#EE82EE" },
       { purple: "#B413EC" },
-      { pink: "#FF1493" }
+      { pink: "#FF1493" },
+      { grey: "#A9A9A9" }
     ];
     let color = note.color;
     console.log("color is: " + color);
@@ -34,11 +35,7 @@ class Notes extends Component {
     let selectedColor = () => {
       console.log("running");
       for (let col in colors) {
-        console.log(colors[col]);
-        console.log(Object.keys(colors[col]));
-        console.log(this.color);
         if (Object.keys(colors[col])[0] === color) {
-          console.log(color);
           return Object.values(colors[col])[0];
         }
       }
@@ -55,57 +52,40 @@ class Notes extends Component {
           id="new-note"
           className={"ui " + color + " card fluid"}
         >
-          <div
-            className="content"
-            style={{ background: selectedColor(), opacity: 0.9 }}
-          >
-            {note.completed ? (
+          {note.completed ? (
+            <div
+              className="content"
+              style={{ background: "#A9A9A9", opacity: 0.9 }}
+            >
               <p style={{ textDecoration: "line-through" }}>{note.text}</p>
-            ) : note.edit ? (
-              <div className="ui input fluid focus">
-                <input
-                  autoFocus
-                  ref={a => (this._inputElement = a)}
-                  value={this.state.inputValue}
-                  onChange={this.handleUpdate}
-                  type="text"
+            </div>
+          ) : (
+            <div
+              className="content"
+              style={{ background: selectedColor(), opacity: 0.9 }}
+            >
+              {note.edit ? (
+                <EditingNote
+                  handleUpdate={this.handleUpdate}
+                  updateNote={this.props.updateNote}
+                  inputValue={this.state.inputValue}
+                  note={note}
                 />
-                <Button
-                  type="submit"
-                  className="ui inverted violet"
-                  id="add-btn"
-                  onClick={() => {
-                    this.updateNote(note.key);
-                  }}
-                >
-                  <div>
-                    <i className="right arrow icon" />
-                  </div>
-                </Button>
-              </div>
-            ) : (
-              <strong>{note.text}</strong>
-            )}
-          </div>
+              ) : (
+                <strong>{note.text}</strong>
+              )}
+            </div>
+          )}
           <div
             className="extra content"
             style={{ background: selectedColor() }}
           >
             {note.clicked ? (
-              <div className="ui two buttons" style={{ background: "#FFECB3" }}>
-                <div
-                  className="ui basic green button"
-                  onClick={() => this.completed(note.key)}
-                >
-                  <i className="check circle icon" />
-                </div>
-                <div
-                  className="ui basic yellow button"
-                  onClick={() => this.edit(note)}
-                >
-                  <i className="edit icon" />
-                </div>
-              </div>
+              <NoteClicked
+                note={note}
+                edit={this.edit}
+                completed={this.completed}
+              />
             ) : (
               <p />
             )}
@@ -130,11 +110,6 @@ class Notes extends Component {
   edit = note => {
     this.setState({ inputValue: note.text });
     this.props.edit(note.key);
-  };
-
-  updateNote = key => {
-    const newText = this._inputElement.value;
-    this.props.updateNote(key, newText);
   };
 
   sortedList = () => {
