@@ -109,7 +109,6 @@ class App extends Component {
       if (noteToEdit[i]["key"] === key) {
         noteToEdit[i]["text"] = newText;
         noteToEdit[i]["edit"] = false;
-        noteToEdit[i]["clicked"] = false;
       }
     }
     fetch(`${URL}updatenote`, {
@@ -130,8 +129,8 @@ class App extends Component {
     });
 
     completedNote = completedNote[0];
-    completedNote.completed = true;
-    completedNote.color = "#d3d3d3";
+    completedNote.completed = !completedNote.completed;
+    completedNote.clicked = false;
 
     fetch(`${URL}completenote`, {
       method: "post",
@@ -158,7 +157,11 @@ class App extends Component {
     });
 
     clickNote = clickNote[0];
-    clickNote.clicked = !clickNote.clicked;
+    if (!clickNote.clicked && !clickNote.completed) {
+      clickNote.clicked = true;
+    } else {
+      clickNote.clicked = false;
+    }
 
     let filteredNotes = this.state.notes.filter(function(item) {
       return item.key !== key;
