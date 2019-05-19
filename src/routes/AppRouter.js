@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Switch, Router, Route, Redirect } from "react-router-dom";
+import Particles from "react-particles-js";
+import params from "../particles";
+import paramsMobile from "../particlesMobile";
 import createHistory from "history/createBrowserHistory";
 import NotFoundPage from "../components/NotFoundPage";
 import App from "../App";
@@ -33,6 +36,11 @@ class AppRouter extends Component {
     return (
       <Router history={history}>
         <div>
+          {window.innerWidth > 870 ? (
+            <Particles className="particles" params={params} />
+          ) : (
+            <Particles className="particles" params={paramsMobile} />
+          )}
           <Switch>
             <Route
               path="/guest"

@@ -44,14 +44,14 @@ class NewNote extends Component {
     let colorCodes = [
       "#B03060",
       "#FE9A76",
-      "#FFD700",
+      "#f9ca24",
       "#32CD32",
       "#016936",
       "#008080",
       "#0E6EB8",
       "#EE82EE",
-      "#B413EC",
-      "#FF1493"
+      "#4834d4",
+      "#be2edd"
     ];
     let currentColorIndex = colors.indexOf(this.state.color) + 1;
     this.setState({

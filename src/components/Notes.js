@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { Checkbox } from "semantic-ui-react";
+
 import EditingNote from "./EditingNote";
 import NoteClicked from "./NoteClicked";
+
 import "./Notes.css";
 
 class Notes extends Component {
@@ -19,14 +22,14 @@ class Notes extends Component {
     let colors = [
       { red: "#B03060" },
       { orange: "#FE9A76" },
-      { yellow: "#FFD700" },
+      { yellow: "#f9ca24" },
       { olive: "#32CD32" },
       { green: "#016936" },
       { teal: "#008080" },
       { blue: "#0E6EB8" },
       { violet: "#EE82EE" },
-      { purple: "#B413EC" },
-      { pink: "#FF1493" },
+      { purple: "#4834d4" },
+      { pink: "#be2edd" },
       { grey: "#A9A9A9" }
     ];
     let color = note.color;
@@ -47,23 +50,32 @@ class Notes extends Component {
         completed={note.completed}
         clicked={note.clicked}
       >
-        <div
-          onClick={() => this.clicked(note.key)}
-          id="new-note"
-          className={"ui " + color + " card fluid"}
-        >
+        <div id="new-note" className={"ui " + color + " card fluid"}>
           {note.completed ? (
             <div
               className="content"
               style={{ background: "#A9A9A9", opacity: 0.9 }}
+              onClick={() => this.clicked(note.key)}
             >
+              <Checkbox
+                slider
+                onChange={() => this.completed(note.key)}
+                checked={true}
+              />
               <p style={{ textDecoration: "line-through" }}>{note.text}</p>
             </div>
           ) : (
             <div
               className="content"
               style={{ background: selectedColor(), opacity: 0.9 }}
+              onClick={() => this.clicked(note.key)}
             >
+              <Checkbox
+                slider
+                checked={false}
+                onChange={() => this.completed(note.key)}
+              />
+
               {note.edit ? (
                 <EditingNote
                   handleUpdate={this.handleUpdate}
@@ -72,7 +84,9 @@ class Notes extends Component {
                   note={note}
                 />
               ) : (
-                <strong>{note.text}</strong>
+                <p>
+                  <strong>{note.text}</strong>
+                </p>
               )}
             </div>
           )}

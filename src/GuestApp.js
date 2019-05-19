@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import Particles from "react-particles-js";
 import { Button, Icon } from "semantic-ui-react";
 import Header from "./components/Header";
 import NewNote from "./components/NewNote";
 import Notes from "./components/Notes";
-import params from "./particles";
-import paramsMobile from "./particlesMobile";
 
 import "./GuestApp.css";
 
@@ -50,7 +47,6 @@ class GuestApp extends Component {
       if (noteToEdit[i]["key"] === key) {
         noteToEdit[i]["text"] = newText;
         noteToEdit[i]["edit"] = false;
-        noteToEdit[i]["clicked"] = false;
       }
     }
     this.setState({ notes: noteToEdit });
@@ -63,6 +59,7 @@ class GuestApp extends Component {
 
     completedNote = completedNote[0];
     completedNote.completed = !completedNote.completed;
+    completedNote.clicked = false;
 
     let filteredNotes = this.state.notes.filter(function(item) {
       return item.key !== key;
@@ -81,7 +78,11 @@ class GuestApp extends Component {
     });
 
     clickNote = clickNote[0];
-    clickNote.clicked = !clickNote.clicked;
+    if (!clickNote.clicked && !clickNote.completed) {
+      clickNote.clicked = true;
+    } else {
+      clickNote.clicked = false;
+    }
 
     let filteredNotes = this.state.notes.filter(function(item) {
       return item.key !== key;
@@ -105,11 +106,6 @@ class GuestApp extends Component {
   render(props) {
     return (
       <div className="App">
-        {window.innerWidth > 870 ? (
-          <Particles className="particles" params={params} />
-        ) : (
-          <Particles className="particles" params={paramsMobile} />
-        )}
         <Header
           sortNotesNew={this.sortNotesNew}
           sortNotesOld={this.sortNotesOld}

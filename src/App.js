@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import Particles from "react-particles-js";
 import Header from "./components/Header";
 import NewNote from "./components/NewNote";
 import Notes from "./components/Notes";
-import params from "./particles";
-import paramsMobile from "./particlesMobile";
 
 import "./App.css";
 
@@ -185,11 +182,6 @@ class App extends Component {
   render(props) {
     return (
       <div className="App">
-        {window.innerWidth > 870 ? (
-          <Particles className="particles" params={params} />
-        ) : (
-          <Particles className="particles" params={paramsMobile} />
-        )}
         <Header
           sortNotesNew={this.sortNotesNew}
           sortNotesOld={this.sortNotesOld}

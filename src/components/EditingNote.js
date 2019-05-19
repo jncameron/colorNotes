@@ -10,7 +10,7 @@ class EditingNote extends Component {
     const { handleUpdate, inputValue, note } = this.props;
 
     return (
-      <div className="ui input fluid focus">
+      <form className="ui input fluid focus">
         <input
           autoFocus
           ref={a => (this._inputElement = a)}
@@ -30,7 +30,7 @@ class EditingNote extends Component {
             <i className="right arrow icon" />
           </div>
         </Button>
-      </div>
+      </form>
     );
   }
 }
