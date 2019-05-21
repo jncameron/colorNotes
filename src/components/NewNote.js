@@ -26,6 +26,7 @@ class NewNote extends Component {
       this.props.onSubmit(newNote);
     }
     this._inputElement.value = "";
+    this.chooseColor();
   };
 
   chooseColor = () => {

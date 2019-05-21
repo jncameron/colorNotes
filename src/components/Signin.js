@@ -4,6 +4,8 @@ import "./Signin.css";
 
 const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
+// const URL = "http://localhost:8081/";
+
 class Signin extends React.Component {
   constructor(props) {
     super(props);
@@ -46,17 +48,12 @@ class Signin extends React.Component {
           }
         } catch (err) {
           console.log(text);
-          if (text === "Email not found") {
+          if (text === "no dice") {
             this.setState({
-              emailLabel: "Email Address Not Found",
+              emailLabel: "Incorrect Email or Password",
               emailInput: "ui input error",
-              emailError: "error"
-            });
-          } else if (text === "Invalid Password") {
-            this.setState({
-              passwordLabel: "Incorrect Password",
               passwordInput: "ui input error",
-              passwordError: "error"
+              emailError: "error"
             });
           }
         }

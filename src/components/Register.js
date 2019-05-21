@@ -5,6 +5,8 @@ import "./Register.css";
 
 const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
+// const URL = "http://localhost:8081/";
+
 class Register extends React.Component {
   onNameChange = event => {
     this.setState({ name: event.target.value });
