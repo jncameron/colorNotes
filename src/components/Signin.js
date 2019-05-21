@@ -30,7 +30,6 @@ class Signin extends React.Component {
   };
 
   onSubmitSignIn = () => {
-    console.log("signing in...");
     fetch(`${URL}signin`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -45,7 +44,6 @@ class Signin extends React.Component {
           const returned = JSON.parse(text);
           const user = returned.user;
           const token = returned.token;
-          console.log("user: " + user);
           if (!!user._id) {
             this.props.getUser(user);
             this.props.authenticate(true);

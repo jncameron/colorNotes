@@ -7,7 +7,6 @@ import "./Header.css";
 class Header extends Component {
   onFormSubmit = e => {
     e.preventDefault();
-    console.log(this._inputElement.value);
   };
 
   render(props) {

@@ -34,7 +34,6 @@ class AppRouter extends Component {
       .then(text => {
         try {
           const user = JSON.parse(text);
-          console.log("user: " + user);
           if (!!user._id) {
             this.getUser(user);
             this.authenticate(true);

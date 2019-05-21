@@ -32,7 +32,6 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(notes => {
-        console.log(notes);
         let savedNotes = [];
         for (let n = 0; n < notes.length; n++) {
           let note = notes[n];

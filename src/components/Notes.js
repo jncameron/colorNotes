@@ -33,10 +33,8 @@ class Notes extends Component {
       { grey: "#A9A9A9" }
     ];
     let color = note.color;
-    console.log("color is: " + color);
 
     let selectedColor = () => {
-      console.log("running");
       for (let col in colors) {
         if (Object.keys(colors[col])[0] === color) {
           return Object.values(colors[col])[0];
