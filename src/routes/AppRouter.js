@@ -10,6 +10,10 @@ import GuestApp from "../GuestApp";
 
 export const history = createHistory();
 
+// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+
+const URL = "http://localhost:8081/";
+
 class AppRouter extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +23,27 @@ class AppRouter extends Component {
       token: ""
     };
   }
+
+  componentDidMount = () => {
+    const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
+    fetch(`${URL}istoken`, {
+      method: "post",
+      headers: { "Content-Type": "application/json", Authorization: bearer }
+    })
+      .then(response => response.text())
+      .then(text => {
+        try {
+          const user = JSON.parse(text);
+          console.log("user: " + user);
+          if (!!user._id) {
+            this.getUser(user);
+            this.authenticate(true);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+  };
 
   getUserToken = token => {
     this.setState({ token: token });
@@ -35,6 +60,7 @@ class AppRouter extends Component {
   signOut = () => {
     this.setState({ user: {} });
     this.setState({ authenticated: false });
+    localStorage.removeItem("authtoken");
   };
 
   render() {
