@@ -10,9 +10,9 @@ import GuestApp from "../GuestApp";
 
 export const history = createHistory();
 
-// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
-const URL = "http://localhost:8081/";
+// const URL = "http://localhost:8081/";
 
 class AppRouter extends Component {
   constructor(props) {

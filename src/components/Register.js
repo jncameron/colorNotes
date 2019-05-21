@@ -3,9 +3,9 @@ import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import { Route, Redirect } from "react-router-dom";
 import "./Register.css";
 
-// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
-const URL = "http://localhost:8081/";
+// const URL = "http://localhost:8081/";
 
 class Register extends React.Component {
   onNameChange = event => {

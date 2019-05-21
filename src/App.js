@@ -5,9 +5,9 @@ import Notes from "./components/Notes";
 
 import "./App.css";
 
-// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
-const URL = "http://localhost:8081/";
+// const URL = "http://localhost:8081/";
 
 const initialState = {
   notes: [],

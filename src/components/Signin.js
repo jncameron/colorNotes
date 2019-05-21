@@ -2,9 +2,9 @@ import React from "react";
 import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import "./Signin.css";
 
-// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
-const URL = "http://localhost:8081/";
+// const URL = "http://localhost:8081/";
 
 class Signin extends React.Component {
   constructor(props) {
