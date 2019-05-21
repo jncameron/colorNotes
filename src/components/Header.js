@@ -62,10 +62,12 @@ class Header extends Component {
                 <Signin
                   authenticate={this.props.authenticate}
                   getUser={this.props.getUser}
+                  getUserToken={this.props.getUserToken}
                 />
                 <Register
                   authenticate={this.props.authenticate}
                   getUser={this.props.getUser}
+                  getUserToken={this.props.getUserToken}
                 />
               </div>
             )}

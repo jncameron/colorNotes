@@ -5,9 +5,9 @@ import Notes from "./components/Notes";
 
 import "./App.css";
 
-const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
-// const URL = "http://localhost:8081/";
+const URL = "http://localhost:8081/";
 
 const initialState = {
   notes: [],
@@ -22,9 +22,10 @@ class App extends Component {
   }
 
   componentDidMount = loadNotes => {
+    const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
     fetch(`${URL}loadnotes`, {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: bearer },
       body: JSON.stringify({
         user_id: this.props.user._id
       })
@@ -48,9 +49,10 @@ class App extends Component {
   };
 
   onNoteSubmit = note => {
+    const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
     fetch(`${URL}notes`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: bearer },
       body: JSON.stringify({
         user_id: this.props.user._id,
         note_body: note.text,
@@ -81,10 +83,11 @@ class App extends Component {
     let filteredNotes = this.state.notes.filter(function(item) {
       return item.completed === false;
     });
+    const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
 
     fetch(`${URL}deletenote`, {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: bearer },
       body: JSON.stringify({
         id: this.props.user._id
       })
@@ -113,9 +116,11 @@ class App extends Component {
         noteToEdit[i]["edit"] = false;
       }
     }
+    const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
+
     fetch(`${URL}updatenote`, {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: bearer },
       body: JSON.stringify({
         note_id: key.toString(),
         updatedText: newText
@@ -133,10 +138,11 @@ class App extends Component {
     completedNote = completedNote[0];
     completedNote.completed = !completedNote.completed;
     completedNote.clicked = false;
+    const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
 
     fetch(`${URL}completenote`, {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: bearer },
       body: JSON.stringify({
         note_id: completedNote.key.toString()
       })

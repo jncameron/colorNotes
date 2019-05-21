@@ -15,9 +15,14 @@ class AppRouter extends Component {
     super(props);
     this.state = {
       authenticated: false,
-      user: {}
+      user: {},
+      token: ""
     };
   }
+
+  getUserToken = token => {
+    this.setState({ token: token });
+  };
 
   getUser = usr => {
     this.setState({ user: usr });
@@ -53,6 +58,7 @@ class AppRouter extends Component {
                     authenticated={this.state.authenticated}
                     authenticate={this.authenticate}
                     getUser={this.getUser}
+                    getUserToken={this.getUserToken}
                   />
                 )
               }
@@ -66,6 +72,7 @@ class AppRouter extends Component {
                     authenticated={this.state.authenticated}
                     user={this.state.user}
                     signOut={this.signOut}
+                    token={this.state.token}
                   />
                 ) : (
                   <Redirect to="/guest/" />

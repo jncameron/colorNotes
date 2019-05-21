@@ -3,9 +3,9 @@ import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import { Route, Redirect } from "react-router-dom";
 import "./Register.css";
 
-const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
-// const URL = "http://localhost:8081/";
+const URL = "http://localhost:8081/";
 
 class Register extends React.Component {
   onNameChange = event => {
@@ -34,7 +34,10 @@ class Register extends React.Component {
     })
       .then(response => response.json())
 
-      .then(user => {
+      .then(returned => {
+        const user = returned.user;
+        const token = returned.token;
+
         if (user._id) {
           this.props.getUser({
             name: user.name,
@@ -42,6 +45,7 @@ class Register extends React.Component {
             _id: user._id
           });
           this.props.authenticate(true);
+          localStorage.setItem("authtoken", token);
         }
       })
       .catch(e => console.log(e));

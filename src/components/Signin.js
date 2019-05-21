@@ -2,9 +2,9 @@ import React from "react";
 import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import "./Signin.css";
 
-const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
-// const URL = "http://localhost:8081/";
+const URL = "http://localhost:8081/";
 
 class Signin extends React.Component {
   constructor(props) {
@@ -30,6 +30,7 @@ class Signin extends React.Component {
   };
 
   onSubmitSignIn = () => {
+    console.log("signing in...");
     fetch(`${URL}signin`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -41,10 +42,14 @@ class Signin extends React.Component {
       .then(response => response.text())
       .then(text => {
         try {
-          const user = JSON.parse(text);
+          const returned = JSON.parse(text);
+          const user = returned.user;
+          const token = returned.token;
+          console.log("user: " + user);
           if (!!user._id) {
             this.props.getUser(user);
             this.props.authenticate(true);
+            localStorage.setItem("authtoken", token);
           }
         } catch (err) {
           console.log(text);

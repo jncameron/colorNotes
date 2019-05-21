@@ -113,6 +113,7 @@ class GuestApp extends Component {
           authenticated={this.props.authenticated}
           authenticate={this.props.authenticate}
           getUser={this.props.getUser}
+          getUserToken={this.props.getUserToken}
         />
         <NewNote onSubmit={this.onNoteSubmit} />
         <Notes
