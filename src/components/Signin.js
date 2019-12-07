@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import "./Signin.css";
 
 const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
@@ -65,20 +64,19 @@ class Signin extends React.Component {
 
   render() {
     return (
-      <Modal
+      <div
+        className="modal"
         trigger={
-          <Button className="ui inverted green" type="submit" id="signin-btn">
-            <div>
-              <Icon name="sign in" />
-            </div>
-          </Button>
+          <button className="btn btn-success" type="submit" id="signin-btn">
+            <div>{/* <Icon name="sign in" /> */}</div>
+          </button>
         }
       >
-        <Modal.Header className="ui center aligned">Sign In</Modal.Header>
-        <Modal.Content>
-          <Modal.Description>
-            <Form onSubmit={this.onFormSubmit}>
-              <Form.Field>
+        <div className="modal-header">Sign In</div>
+        <div className="modal-content">
+          <div className="modal-body">
+            <form onSubmit={this.onFormSubmit}>
+              <div className="form-group">
                 <label>{this.state.emailLabel}</label>
                 <div className={this.state.emailError}>
                   <input
@@ -88,8 +86,8 @@ class Signin extends React.Component {
                     className={this.state.emailInput}
                   />
                 </div>
-              </Form.Field>
-              <Form.Field>
+              </div>
+              <div className="form-group">
                 <label>{this.state.passwordLabel}</label>
                 <div className={this.state.passwordError}>
                   <input
@@ -99,22 +97,23 @@ class Signin extends React.Component {
                     className={this.state.passwordInput}
                   />
                 </div>
-              </Form.Field>
-              <Form.Field />
-              <Button
-                type="submit"
-                className="ui inverted violet"
-                id="signin-btn"
-                onClick={this.onSubmitSignIn}
-              >
-                <div>
-                  <i className="right arrow icon" />
-                </div>
-              </Button>
-            </Form>
-          </Modal.Description>
-        </Modal.Content>
-      </Modal>
+              </div>
+              <div className="form-group">
+                <button
+                  type="submit"
+                  className="btn btn-info"
+                  id="signin-btn"
+                  onClick={this.onSubmitSignIn}
+                >
+                  <div>
+                    <i className="right arrow icon" />
+                  </div>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     );
   }
 }

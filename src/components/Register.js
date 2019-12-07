@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Icon, Modal, Form } from "semantic-ui-react";
+
 import { Route, Redirect } from "react-router-dom";
 import "./Register.css";
 
@@ -53,47 +53,46 @@ class Register extends React.Component {
 
   render() {
     return (
-      <Modal
+      <div
+        className="modal"
         trigger={
-          <Button className="ui inverted green" type="submit" id="reg-btn">
-            <div>
-              <Icon name="signup" />
-            </div>
-          </Button>
+          <button className="btn btn-success" type="submit" id="reg-btn">
+            <div>{/* <Icon name="signup" /> */}</div>
+          </button>
         }
       >
-        <Modal.Header className="ui center aligned">Register</Modal.Header>
-        <Modal.Content>
-          <Modal.Description>
-            <Form onSubmit={this.onFormSubmit}>
-              <Form.Field>
+        <div className="modal-header">Register</div>
+        <div className="modal-content">
+          <div className="modal-body">
+            <form onSubmit={this.onFormSubmit}>
+              <div className="form-group">
                 <label>Name</label>
                 <input
                   placeholder="John Smith"
                   onChange={this.onNameChange}
                   type="text"
                 />
-              </Form.Field>
-              <Form.Field>
+              </div>
+              <div className="form-group">
                 <label>Email Address</label>
                 <input
                   type="email"
                   placeholder="name@example.com"
                   onChange={this.onEmailChange}
                 />
-              </Form.Field>
-              <Form.Field>
+              </div>
+              <div className="form-group">
                 <label>Password</label>
                 <input
                   type="password"
                   className="signinInputs"
                   onChange={this.onPasswordChange}
                 />
-              </Form.Field>
-              <Form.Field />
-              <Button
+              </div>
+              <div />
+              <button
                 type="submit"
-                className="ui inverted violet"
+                className="btn btn-info"
                 id="signin-btn"
                 onClick={this.onSubmitRegister}
                 value="Register"
@@ -101,11 +100,11 @@ class Register extends React.Component {
                 <div>
                   <i className="right arrow icon" />
                 </div>
-              </Button>
-            </Form>
-          </Modal.Description>
-        </Modal.Content>
-      </Modal>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     );
   }
 }

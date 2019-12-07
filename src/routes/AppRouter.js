@@ -66,11 +66,6 @@ class AppRouter extends Component {
     return (
       <Router history={history}>
         <div>
-          {window.innerWidth > 870 ? (
-            <Particles className="particles" params={params} />
-          ) : (
-            <Particles className="particles" params={paramsMobile} />
-          )}
           <Switch>
             <Route
               path="/guest"

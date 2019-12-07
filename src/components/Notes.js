@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Checkbox } from "semantic-ui-react";
 
 import EditingNote from "./EditingNote";
 import NoteClicked from "./NoteClicked";
@@ -55,7 +54,8 @@ class Notes extends Component {
               style={{ background: "#A9A9A9", opacity: 0.9 }}
               onClick={() => this.clicked(note.key)}
             >
-              <Checkbox
+              <input
+                type="checkbox"
                 slider
                 onChange={() => this.completed(note.key)}
                 checked={true}
@@ -68,7 +68,8 @@ class Notes extends Component {
               style={{ background: selectedColor(), opacity: 0.9 }}
               onClick={() => this.clicked(note.key)}
             >
-              <Checkbox
+              <input
+                type="checkbox"
                 slider
                 checked={false}
                 onChange={() => this.completed(note.key)}

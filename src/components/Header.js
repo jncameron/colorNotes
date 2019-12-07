@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Icon } from "semantic-ui-react";
+
 import Signin from "./Signin";
 import Register from "./Register";
 import "./Header.css";
@@ -11,51 +11,47 @@ class Header extends Component {
 
   render(props) {
     return (
-      <div className="ui padded basic segment" id="header">
-        <div className="header-grid">
-          <div className="h-col-1">
+      <div className="container" id="header">
+        <div className="row">
+          <div className="col-sm">
             <h1>Color Notes</h1>
           </div>
-          <div className="h-col-2">
-            <Button.Group>
-              <Button
-                className="ui inverted violet"
+          <div className="col-sm">
+            <div className="btn-group" role="group">
+              <button
+                className="btn btn-info"
                 type="submit"
                 id="sortnew-btn"
                 onClick={this.props.sortNotesNew}
               >
-                <Icon name="arrow up" />
-              </Button>
-              <Button
-                className="ui inverted violet"
+                {/* <Icon name="arrow up" /> */}
+              </button>
+              <button
+                className="btn btn-info"
                 type="submit"
                 id="sortold-btn"
                 onClick={this.props.sortNotesOld}
               >
-                <Icon name="arrow down" />
-              </Button>
-            </Button.Group>
-            <Button
-              className="ui inverted violet"
+                {/* <Icon name="arrow down" /> */}
+              </button>
+            </div>
+            <button
+              className="btn btn-info"
               type="submit"
               id="add-btn"
               onClick={this.props.deleteNote}
             >
-              <div>
-                <Icon name="trash alternate" />
-              </div>
-            </Button>
+              <div>{/* <Icon name="trash alternate" /> */}</div>
+            </button>
             {!!this.props.authenticated ? (
-              <Button
-                className="ui inverted red"
+              <button
+                className="btn btn-danger"
                 type="submit"
                 id="add-btn"
                 onClick={this.props.signOut}
               >
-                <div>
-                  <Icon name="sign out" />
-                </div>
-              </Button>
+                <div>{/* <Icon name="sign out" /> */}</div>
+              </button>
             ) : (
               <div>
                 <Signin

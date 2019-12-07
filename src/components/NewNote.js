@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Button } from "semantic-ui-react";
+
 import "./NewNote.css";
 
 const initialState = {
@@ -69,35 +69,31 @@ class NewNote extends Component {
     }
     return (
       <div>
-        <Segment className="ui raised padded compact" id="note-input">
-          <form onSubmit={this.onFormSubmit}>
-            <div>
-              <div className="ui input focus new-note-input">
-                <input
-                  ref={a => (this._inputElement = a)}
-                  placeholder={placeholder}
-                  type="text"
-                />
-                <div
-                  className={`ui label`}
-                  style={{ background: this.state.colorCode }}
-                  id="note-color"
-                  onClick={this.chooseColor}
-                />
-                <Button
-                  type="submit"
-                  className="ui inverted violet"
-                  id="add-btn"
-                >
-                  <div>
-                    <i className="right arrow icon" />
-                  </div>
-                </Button>
-              </div>
+        {/* <Segment className="ui raised padded compact" id="note-input"> */}
+        <form onSubmit={this.onFormSubmit}>
+          <div>
+            <div className="ui input focus new-note-input">
+              <input
+                ref={a => (this._inputElement = a)}
+                placeholder={placeholder}
+                type="text"
+              />
+              <div
+                className={`ui label`}
+                style={{ background: this.state.colorCode }}
+                id="note-color"
+                onClick={this.chooseColor}
+              />
+              <button type="submit" className="btn btn-info" id="add-btn">
+                <div>
+                  <i className="right arrow icon" />
+                </div>
+              </button>
             </div>
-            <div />
-          </form>
-        </Segment>
+          </div>
+          <div />
+        </form>
+        {/* </Segment> */}
       </div>
     );
   }

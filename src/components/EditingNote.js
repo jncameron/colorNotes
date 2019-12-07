@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "semantic-ui-react";
 
 class EditingNote extends Component {
   updateNote = key => {
@@ -18,9 +17,9 @@ class EditingNote extends Component {
           onChange={handleUpdate}
           type="text"
         />
-        <Button
+        <button
           type="submit"
-          className="ui inverted violet"
+          className="btn btn-info"
           id="add-btn"
           onClick={() => {
             this.updateNote(note.key);
@@ -29,7 +28,7 @@ class EditingNote extends Component {
           <div>
             <i className="right arrow icon" />
           </div>
-        </Button>
+        </button>
       </form>
     );
   }
