@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { ButtonGroup, Button } from "react-bootstrap";
+// import Button from "react-bootstrap/Button";
 
 import Signin from "./Signin";
 import Register from "./Register";
@@ -11,64 +13,27 @@ class Header extends Component {
 
   render(props) {
     return (
-      <div className="container" id="header">
-        <div className="row">
-          <div className="col-sm">
-            <h1>Color Notes</h1>
-          </div>
-          <div className="col-sm">
-            <div className="btn-group" role="group">
-              <button
-                className="btn btn-info"
-                type="submit"
-                id="sortnew-btn"
-                onClick={this.props.sortNotesNew}
-              >
-                {/* <Icon name="arrow up" /> */}
-              </button>
-              <button
-                className="btn btn-info"
-                type="submit"
-                id="sortold-btn"
-                onClick={this.props.sortNotesOld}
-              >
-                {/* <Icon name="arrow down" /> */}
-              </button>
-            </div>
-            <button
-              className="btn btn-info"
-              type="submit"
-              id="add-btn"
-              onClick={this.props.deleteNote}
-            >
-              <div>{/* <Icon name="trash alternate" /> */}</div>
-            </button>
-            {!!this.props.authenticated ? (
-              <button
-                className="btn btn-danger"
-                type="submit"
-                id="add-btn"
-                onClick={this.props.signOut}
-              >
-                <div>{/* <Icon name="sign out" /> */}</div>
-              </button>
-            ) : (
-              <div>
-                <Signin
-                  authenticate={this.props.authenticate}
-                  getUser={this.props.getUser}
-                  getUserToken={this.props.getUserToken}
-                />
-                <Register
-                  authenticate={this.props.authenticate}
-                  getUser={this.props.getUser}
-                  getUserToken={this.props.getUserToken}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+      <nav className="navbar navbar-expand-lg" id="header">
+        <h1>Color Notes</h1>
+        <a className="nav-link active" href="#">
+          Log In
+        </a>
+        {/* <ButtonGroup> */}
+        <Button
+          type="submit"
+          id="sortold-btn"
+          onClick={this.props.sortNotesOld}
+        >
+          Old-New
+        </Button>
+        <Button type="submit" id="add-btn" onClick={this.props.deleteNote}>
+          New-Old
+        </Button>
+        <Button type="submit" id="add-btn" onClick={this.props.signOut}>
+          <div>Sign Out</div>
+        </Button>
+        {/* </ButtonGroup> */}
+      </nav>
     );
   }
 }
