@@ -4,7 +4,8 @@ import "./NewNote.css";
 
 const initialState = {
   color: "red",
-  colorCode: "#B03060"
+  colorCode: "#B03060",
+  colorIndex: 0
 };
 
 class NewNote extends Component {
@@ -31,7 +32,6 @@ class NewNote extends Component {
 
   chooseColor = () => {
     let colors = [
-      "red",
       "orange",
       "yellow",
       "olive",
@@ -43,7 +43,6 @@ class NewNote extends Component {
       "pink"
     ];
     let colorCodes = [
-      "#B03060",
       "#FE9A76",
       "#f9ca24",
       "#32CD32",
@@ -54,12 +53,23 @@ class NewNote extends Component {
       "#4834d4",
       "#be2edd"
     ];
-    let currentColorIndex = colors.indexOf(this.state.color) + 1;
-    this.setState({
-      color: colors[currentColorIndex],
-      colorCode: colorCodes[currentColorIndex]
+    this.setState(prevState => {
+      if (prevState.colorIndex < colors.length - 1) {
+        return {
+          colorIndex: prevState.colorIndex + 1,
+          color: colors[this.state.colorIndex],
+          colorCode: colorCodes[this.state.colorIndex]
+        };
+      } else {
+        prevState.colorIndex = 0;
+        return {
+          colorIndex: prevState.colorIndex + 1,
+          color: colors[this.state.colorIndex],
+          colorCode: colorCodes[this.state.colorIndex]
+        };
+      }
     });
-    return colorCodes[currentColorIndex];
+    // return colorCodes[this.state.colorIndex];
   };
 
   render() {
@@ -68,29 +78,30 @@ class NewNote extends Component {
       placeholder = `What's on your mind, ${this.props.user.name}?`;
     }
     return (
-      <div>
+      <div class="d-flex justify-content-center">
         {/* <Segment className="ui raised padded compact" id="note-input"> */}
         <form onSubmit={this.onFormSubmit}>
-          <div>
-            <div className="ui input focus new-note-input">
-              <input
-                ref={a => (this._inputElement = a)}
-                placeholder={placeholder}
-                type="text"
-              />
-              <div
-                className={`ui label`}
-                style={{ background: this.state.colorCode }}
-                id="note-color"
-                onClick={this.chooseColor}
-              />
-              <button type="submit" className="btn btn-info" id="add-btn">
-                <div>
-                  <i className="right arrow icon" />
-                </div>
-              </button>
-            </div>
+          <div class="row" style={{ margin: "10px" }}>
+            <input
+              className="col-sm6"
+              ref={a => (this._inputElement = a)}
+              placeholder={placeholder}
+              type="text"
+            />
+            <div className={`ui label col-sm2`} />
+            <button
+              type="submit"
+              className="btn btn-info"
+              id="add-btn"
+              style={{ background: this.state.colorCode }}
+              id="note-color"
+            >
+              <div>
+                <i className="right arrow icon" />
+              </div>
+            </button>
           </div>
+
           <div />
         </form>
         {/* </Segment> */}

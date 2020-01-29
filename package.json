@@ -5,6 +5,7 @@
   "homepage": "http://colornotes.info",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "bootstrap-icons": "^1.0.0-alpha2",
     "concurrently": "^4.1.2",
     "font-awesome": "^4.7.0",
     "gh-pages": "^2.1.1",

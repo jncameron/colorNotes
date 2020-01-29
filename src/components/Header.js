@@ -24,15 +24,26 @@ class Header extends Component {
           id="sortold-btn"
           onClick={this.props.sortNotesOld}
         >
-          Old-New
+          <img
+            src="/up-arrow.svg"
+            alt=""
+            width="20"
+            height="20"
+            title="sort old"
+          />
         </Button>
-        <Button type="submit" id="add-btn" onClick={this.props.deleteNote}>
-          New-Old
+        <Button type="submit" id="add-btn" onClick={this.props.sortNotesNew}>
+          <img
+            src="/down-arrow.svg"
+            alt=""
+            width="20"
+            height="20"
+            title="sort new"
+          />
         </Button>
-        <Button type="submit" id="add-btn" onClick={this.props.signOut}>
-          <div>Sign Out</div>
-        </Button>
-        {/* </ButtonGroup> */}
+        {this.props.authenticated && (
+          <Button type="submit" id="add-btn" onClick={this.props.signOut} />
+        )}
       </nav>
     );
   }

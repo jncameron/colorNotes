@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import { Switch, Router, Route, Redirect } from "react-router-dom";
-import Particles from "react-particles-js";
-import params from "../particles";
-import paramsMobile from "../particlesMobile";
 import createHistory from "history/createBrowserHistory";
 import NotFoundPage from "../components/NotFoundPage";
 import App from "../App";
