@@ -5,9 +5,12 @@ const NoteClicked = ({ note, edit, completed }) => {
     completed(note.key);
   };
   return (
-    <div className="ui two buttons">
-      <div className="ui inverted violet button" onClick={() => edit(note)}>
-        <i className="edit icon" />
+    <div className="d-flex justify-content-between">
+      <div className="btn" onClick={() => edit(note)}>
+        <img src="/edit.svg" alt="" width="20" height="20" title="sort old" />
+      </div>
+      <div className="btn" onClick={() => completed(note.key)}>
+        <img src="/check.svg" alt="" width="20" height="20" title="sort old" />
       </div>
     </div>
   );

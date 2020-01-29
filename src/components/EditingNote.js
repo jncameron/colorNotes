@@ -10,25 +10,33 @@ class EditingNote extends Component {
 
     return (
       <form className="ui input fluid focus">
-        <input
-          autoFocus
-          ref={a => (this._inputElement = a)}
-          value={inputValue}
-          onChange={handleUpdate}
-          type="text"
-        />
-        <button
-          type="submit"
-          className="btn btn-info"
-          id="add-btn"
-          onClick={() => {
-            this.updateNote(note.key);
-          }}
-        >
-          <div>
-            <i className="right arrow icon" />
-          </div>
-        </button>
+        <div className="d-flex flex-row" style={{ margin: "10px" }}>
+          <input
+            autoFocus
+            ref={a => (this._inputElement = a)}
+            value={inputValue}
+            onChange={handleUpdate}
+            type="text"
+          />
+          <button
+            type="submit"
+            className="btn btn-info"
+            id="add-btn"
+            onClick={() => {
+              this.updateNote(note.key);
+            }}
+          >
+            <div>
+              <img
+                src="/edit.svg"
+                alt=""
+                width="20"
+                height="20"
+                title="sort old"
+              />
+            </div>
+          </button>
+        </div>
       </form>
     );
   }

@@ -29,10 +29,17 @@
   text-decoration: line-through;
   background: #666;
 }
+.content {
+  padding-left: 10px !important;
+  min-height: 120px !important;
+}
 
 @media (max-width: 1800px) {
   .note {
     max-width: 300px;
+  }
+  .content {
+    padding-left: 10px !important;
   }
 }
 
@@ -42,6 +49,9 @@
   }
   .note {
     max-width: 250px;
+  }
+  .content {
+    padding-left: 10px !important;
   }
 }
 
@@ -59,6 +69,9 @@
 
     margin-bottom: 10px !important;
   }
+  .content {
+    padding-left: 10px !important;
+  }
 }
 
 @media (max-width: 550px) {
@@ -69,14 +82,17 @@
     grid-column-gap: 0;
     grid-row-gap: 0;
   }
-  .note {
+  #new-note {
     width: 100vw;
     margin-top: 0 !important;
-    margin-left: 1vw !important;
+    margin-bottom: 0 !important;
     margin-right: 1vw !important;
-    margin-bottom: 10px !important;
   }
   .card {
-    min-height: 80px !important;
+    min-height: 70px !important;
+  }
+  .content {
+    padding-left: 10px !important;
+    min-height: 50px !important;
   }
 }

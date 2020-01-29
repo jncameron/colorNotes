@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import EditingNote from "./EditingNote";
 import NoteClicked from "./NoteClicked";
 
@@ -49,18 +48,15 @@ class Notes extends Component {
       >
         <div id="new-note" className={"ui " + color + " card fluid"}>
           {note.completed ? (
-            <div
-              className="content"
-              style={{ background: "#A9A9A9", opacity: 0.9 }}
-              onClick={() => this.clicked(note.key)}
-            >
-              <input
-                type="checkbox"
-                slider
-                onChange={() => this.completed(note.key)}
-                checked={true}
-              />
-              <p style={{ textDecoration: "line-through" }}>{note.text}</p>
+            <div>
+              <div
+                className="content"
+                id="content-main"
+                style={{ background: "#A9A9A9", opacity: 0.9 }}
+                onClick={() => this.completed(note.key)}
+              >
+                <p style={{ textDecoration: "line-through" }}>{note.text}</p>
+              </div>
             </div>
           ) : (
             <div
@@ -68,13 +64,6 @@ class Notes extends Component {
               style={{ background: selectedColor(), opacity: 0.9 }}
               onClick={() => this.clicked(note.key)}
             >
-              <input
-                type="checkbox"
-                slider
-                checked={false}
-                onChange={() => this.completed(note.key)}
-              />
-
               {note.edit ? (
                 <EditingNote
                   handleUpdate={this.handleUpdate}
@@ -90,7 +79,7 @@ class Notes extends Component {
             </div>
           )}
           <div
-            className="extra content"
+            className="extra-content"
             style={{ background: selectedColor() }}
           >
             {note.clicked ? (
@@ -113,10 +102,13 @@ class Notes extends Component {
   };
 
   completed = key => {
+    console.log("key for completion " + key);
     this.props.complete(key);
   };
 
   clicked = key => {
+    console.log("key for clicked " + key);
+
     this.props.clicked(key);
   };
 
