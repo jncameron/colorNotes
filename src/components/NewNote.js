@@ -78,26 +78,31 @@ class NewNote extends Component {
       placeholder = `What's on your mind, ${this.props.user.name}?`;
     }
     return (
-      <div class="d-flex justify-content-center">
+      <div className="container justify-content-center">
         {/* <Segment className="ui raised padded compact" id="note-input"> */}
         <form onSubmit={this.onFormSubmit}>
-          <div class="row" style={{ margin: "10px" }}>
+          <div className="d-flex flex-row" style={{ margin: "10px" }}>
             <input
-              className="col-sm6"
+              className="w-100 form-control"
               ref={a => (this._inputElement = a)}
               placeholder={placeholder}
               type="text"
             />
-            <div className={`ui label col-sm2`} />
             <button
               type="submit"
-              className="btn btn-info"
+              className="w-25 btn btn-primary form-control"
               id="add-btn"
-              style={{ background: this.state.colorCode }}
+              style={{ background: this.state.colorCode, maxWidth: "80px" }}
               id="note-color"
             >
               <div>
-                <i className="right arrow icon" />
+                <img
+                  src="/right-arrow.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                  title="sort old"
+                />
               </div>
             </button>
           </div>
