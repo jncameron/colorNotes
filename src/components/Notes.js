@@ -66,6 +66,7 @@ class Notes extends Component {
             >
               {note.edit ? (
                 <EditingNote
+                  editButtonColor={selectedColor()}
                   handleUpdate={this.handleUpdate}
                   updateNote={this.props.updateNote}
                   inputValue={this.state.inputValue}

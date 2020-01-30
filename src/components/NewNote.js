@@ -78,7 +78,10 @@ class NewNote extends Component {
       placeholder = `What's on your mind, ${this.props.user.name}?`;
     }
     return (
-      <div className="container justify-content-center">
+      <div
+        className="container justify-content-center"
+        style={{ paddingTop: "80px" }}
+      >
         {/* <Segment className="ui raised padded compact" id="note-input"> */}
         <form onSubmit={this.onFormSubmit}>
           <div className="d-flex flex-row" style={{ margin: "10px" }}>
