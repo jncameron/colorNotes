@@ -7,10 +7,6 @@ import GuestApp from "../GuestApp";
 
 export const history = createHistory();
 
-// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
-
-const URL = "http://localhost:8081/";
-
 class AppRouter extends Component {
   constructor(props) {
     super(props);
@@ -23,8 +19,8 @@ class AppRouter extends Component {
 
   componentDidMount = () => {
     const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
-    if (bearer !== null) {
-      fetch(`${URL}istoken`, {
+    if (bearer.length > 11) {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}istoken`, {
         method: "post",
         headers: { "Content-Type": "application/json", Authorization: bearer }
       })

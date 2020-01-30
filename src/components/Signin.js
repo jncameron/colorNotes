@@ -2,10 +2,6 @@ import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import "./Signin.css";
 
-// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
-
-const URL = "http://localhost:8081/";
-
 class Signin extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +27,7 @@ class Signin extends React.Component {
 
   onSubmitSignIn = e => {
     e.preventDefault();
-    fetch(`${URL}signin`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}signin`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

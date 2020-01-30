@@ -5,10 +5,6 @@ import Notes from "./components/Notes";
 
 import "./App.css";
 
-// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
-
-const URL = "http://localhost:8081/";
-
 const initialState = {
   notes: [],
   sortBy: "new",
@@ -23,33 +19,35 @@ class App extends Component {
 
   componentDidMount = loadNotes => {
     const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
-    fetch(`${URL}loadnotes`, {
-      method: "post",
-      headers: { "Content-Type": "application/json", Authorization: bearer },
-      body: JSON.stringify({
-        user_id: this.props.user._id
+    if (bearer !== null) {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}loadnotes`, {
+        method: "post",
+        headers: { "Content-Type": "application/json", Authorization: bearer },
+        body: JSON.stringify({
+          user_id: this.props.user._id
+        })
       })
-    })
-      .then(response => response.json())
-      .then(notes => {
-        let savedNotes = [];
-        for (let n = 0; n < notes.length; n++) {
-          let note = notes[n];
-          savedNotes.push({
-            key: note._id,
-            text: note.note_body,
-            completed: note.completed,
-            edit: note.edit,
-            color: note.color
-          });
-        }
-        this.setState({ notes: savedNotes });
-      });
+        .then(response => response.json())
+        .then(notes => {
+          let savedNotes = [];
+          for (let n = 0; n < notes.length; n++) {
+            let note = notes[n];
+            savedNotes.push({
+              key: note._id,
+              text: note.note_body,
+              completed: note.completed,
+              edit: note.edit,
+              color: note.color
+            });
+          }
+          this.setState({ notes: savedNotes });
+        });
+    }
   };
 
   onNoteSubmit = note => {
     const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
-    fetch(`${URL}notes`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}notes`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: bearer },
       body: JSON.stringify({
@@ -84,7 +82,7 @@ class App extends Component {
     });
     const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
 
-    fetch(`${URL}deletenote`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}deletenote`, {
       method: "post",
       headers: { "Content-Type": "application/json", Authorization: bearer },
       body: JSON.stringify({
@@ -117,7 +115,7 @@ class App extends Component {
     }
     const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
 
-    fetch(`${URL}updatenote`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}updatenote`, {
       method: "post",
       headers: { "Content-Type": "application/json", Authorization: bearer },
       body: JSON.stringify({
@@ -139,7 +137,7 @@ class App extends Component {
     completedNote.clicked = false;
     const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
 
-    fetch(`${URL}completenote`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}completenote`, {
       method: "post",
       headers: { "Content-Type": "application/json", Authorization: bearer },
       body: JSON.stringify({
