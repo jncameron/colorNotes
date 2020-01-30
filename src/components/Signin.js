@@ -1,4 +1,5 @@
 import React from "react";
+import { Modal, Button, Form } from "react-bootstrap";
 import "./Signin.css";
 
 const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
@@ -62,24 +63,36 @@ class Signin extends React.Component {
       });
   };
 
-  render() {
+  render(props) {
     return (
-      <div
-        className="modal"
-        trigger={
-          <button className="btn btn-success" type="submit" id="signin-btn">
-            <div>{/* <Icon name="sign in" /> */}</div>
-          </button>
-        }
+      <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={this.props.show}
+        onHide={this.props.onHide}
+        // trigger={
+        //   <button className="btn btn-success" type="submit" id="signin-btn">
+        //     <div>{/* <Icon name="sign in" /> */}</div>
+        //   </button>
+        // }
       >
-        <div className="modal-header">Sign In</div>
+        <Modal.Header
+          style={{
+            display: "inline",
+            alignItems: "center",
+            textAlign: "center"
+          }}
+          closeButton
+        >
+          <strong>Sign In</strong>
+        </Modal.Header>
         <div className="modal-content">
           <div className="modal-body">
-            <form onSubmit={this.onFormSubmit}>
+            <Form onSubmit={this.onFormSubmit}>
               <div className="form-group">
                 <label>{this.state.emailLabel}</label>
                 <div className={this.state.emailError}>
-                  <input
+                  <Form.Control
                     type="email"
                     placeholder="name@email.com"
                     onChange={this.onEmailChange}
@@ -90,7 +103,7 @@ class Signin extends React.Component {
               <div className="form-group">
                 <label>{this.state.passwordLabel}</label>
                 <div className={this.state.passwordError}>
-                  <input
+                  <Form.Control
                     type="password"
                     className="signinInputs"
                     onChange={this.onPasswordChange}
@@ -99,21 +112,32 @@ class Signin extends React.Component {
                 </div>
               </div>
               <div className="form-group">
-                <button
+                <Button
+                  variant="primary"
                   type="submit"
-                  className="btn btn-info"
                   id="signin-btn"
                   onClick={this.onSubmitSignIn}
                 >
                   <div>
-                    <i className="right arrow icon" />
+                    <p style={{ margin: 0 }}>Sign in</p>
                   </div>
-                </button>
+                </Button>
+                <Button
+                  className="float-right"
+                  variant="warning"
+                  type="submit"
+                  id="signin-btn"
+                  onClick={this.props.switchToSignUp}
+                >
+                  <div>
+                    <p style={{ margin: 0 }}>Switch to Sign up</p>
+                  </div>
+                </Button>
               </div>
-            </form>
+            </Form>
           </div>
         </div>
-      </div>
+      </Modal>
     );
   }
 }

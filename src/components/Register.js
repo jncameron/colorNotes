@@ -1,4 +1,5 @@
 import React from "react";
+import { Modal, Button, ButtonGroup, Form } from "react-bootstrap";
 
 import { Route, Redirect } from "react-router-dom";
 import "./Register.css";
@@ -53,21 +54,33 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div
-        className="modal"
+      <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={this.props.show}
+        onHide={this.props.onHide}
         trigger={
           <button className="btn btn-success" type="submit" id="reg-btn">
             <div>{/* <Icon name="signup" /> */}</div>
           </button>
         }
       >
-        <div className="modal-header">Register</div>
+        <Modal.Header
+          style={{
+            display: "inline",
+            alignItems: "center",
+            textAlign: "center"
+          }}
+          closeButton
+        >
+          <strong>Sign Up</strong>
+        </Modal.Header>
         <div className="modal-content">
           <div className="modal-body">
             <form onSubmit={this.onFormSubmit}>
               <div className="form-group">
                 <label>Name</label>
-                <input
+                <Form.Control
                   placeholder="John Smith"
                   onChange={this.onNameChange}
                   type="text"
@@ -75,7 +88,7 @@ class Register extends React.Component {
               </div>
               <div className="form-group">
                 <label>Email Address</label>
-                <input
+                <Form.Control
                   type="email"
                   placeholder="name@example.com"
                   onChange={this.onEmailChange}
@@ -83,28 +96,39 @@ class Register extends React.Component {
               </div>
               <div className="form-group">
                 <label>Password</label>
-                <input
+                <Form.Control
                   type="password"
                   className="signinInputs"
                   onChange={this.onPasswordChange}
                 />
               </div>
               <div />
-              <button
+              <Button
+                variant="primary"
                 type="submit"
-                className="btn btn-info"
                 id="signin-btn"
                 onClick={this.onSubmitRegister}
                 value="Register"
               >
                 <div>
-                  <i className="right arrow icon" />
+                  <p style={{ margin: 0 }}>Sign Up</p>
                 </div>
-              </button>
+              </Button>
+              <Button
+                className="float-right"
+                variant="warning"
+                type="submit"
+                id="signin-btn"
+                onClick={this.props.switchToSignIn}
+              >
+                <div>
+                  <p style={{ margin: 0 }}>Switch to Sign In</p>
+                </div>
+              </Button>
             </form>
           </div>
         </div>
-      </div>
+      </Modal>
     );
   }
 }
