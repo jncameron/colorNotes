@@ -7,9 +7,9 @@ import GuestApp from "../GuestApp";
 
 export const history = createHistory();
 
-const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
-// const URL = "http://localhost:8081/";
+const URL = "http://localhost:8081/";
 
 class AppRouter extends Component {
   constructor(props) {
@@ -17,28 +17,30 @@ class AppRouter extends Component {
     this.state = {
       authenticated: false,
       user: {},
-      token: ""
+      token: "hmm"
     };
   }
 
   componentDidMount = () => {
     const bearer = `Bearer ${localStorage.getItem("authtoken")}`;
-    fetch(`${URL}istoken`, {
-      method: "post",
-      headers: { "Content-Type": "application/json", Authorization: bearer }
-    })
-      .then(response => response.text())
-      .then(text => {
-        try {
-          const user = JSON.parse(text);
-          if (!!user._id) {
-            this.getUser(user);
-            this.authenticate(true);
+    if (bearer !== null) {
+      fetch(`${URL}istoken`, {
+        method: "post",
+        headers: { "Content-Type": "application/json", Authorization: bearer }
+      })
+        .then(response => response.text())
+        .then(text => {
+          try {
+            const user = JSON.parse(text);
+            if (!!user._id) {
+              this.getUser(user);
+              this.authenticate(true);
+            }
+          } catch (err) {
+            console.log(err);
           }
-        } catch (err) {
-          console.log(err);
-        }
-      });
+        });
+    }
   };
 
   getUserToken = token => {
@@ -58,6 +60,8 @@ class AppRouter extends Component {
     this.setState({ authenticated: false });
     localStorage.removeItem("authtoken");
   };
+
+  retrieveToken = () => this.state.token;
 
   render() {
     return (

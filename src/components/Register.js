@@ -4,9 +4,9 @@ import { Modal, Button, ButtonGroup, Form } from "react-bootstrap";
 import { Route, Redirect } from "react-router-dom";
 import "./Register.css";
 
-const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
+// const URL = "http://cnapi-env.gdmmdmsy82.ap-southeast-2.elasticbeanstalk.com/";
 
-// const URL = "http://localhost:8081/";
+const URL = "http://localhost:8081/";
 
 class Register extends React.Component {
   onNameChange = event => {
@@ -21,9 +21,10 @@ class Register extends React.Component {
     this.setState({ password: event.target.value });
   };
 
-  onSubmitRegister = () => {
+  onSubmitRegister = e => {
+    e.preventDefault();
     fetch(`${URL}users`, {
-      method: "POST",
+      method: "post",
       headers: {
         "Content-Type": "application/json"
       },

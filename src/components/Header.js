@@ -37,21 +37,6 @@ class Header extends Component {
         <h1>Color Notes</h1>
         <ButtonGroup>
           <Button
-            variant="outline-primary"
-            type="submit"
-            id="sortold-btn"
-            onClick={this.signInModalShow}
-          >
-            <img
-              style={{ filter: "invert(1)" }}
-              src="/log-in.svg"
-              alt=""
-              width="20"
-              height="20"
-              title="sort old"
-            />
-          </Button>
-          <Button
             variant="outline-success"
             type="submit"
             id="add-btn"
@@ -68,7 +53,6 @@ class Header extends Component {
           </Button>
           <Button
             type="submit"
-            id="add-btn"
             variant="outline-success"
             onClick={this.props.sortNotesNew}
           >
@@ -81,9 +65,7 @@ class Header extends Component {
               title="sort new"
             />
           </Button>
-          {this.props.authenticated && (
-            <Button type="submit" id="add-btn" onClick={this.props.signOut} />
-          )}
+
           <Button
             className="ui inverted violet"
             type="submit"
@@ -100,6 +82,39 @@ class Header extends Component {
               title="trash"
             />
           </Button>
+          {this.props.authenticated ? (
+            <Button
+              variant="outline-primary"
+              type="submit"
+              id="add-btn"
+              onClick={this.props.signOut}
+            >
+              <img
+                style={{ filter: "invert(1)" }}
+                src="/log-out.svg"
+                alt=""
+                width="20"
+                height="20"
+                title="sort old"
+              />
+            </Button>
+          ) : (
+            <Button
+              variant="outline-primary"
+              type="submit"
+              id="add-btn"
+              onClick={this.signInModalShow}
+            >
+              <img
+                style={{ filter: "invert(1)" }}
+                src="/log-in.svg"
+                alt=""
+                width="20"
+                height="20"
+                title="sort old"
+              />
+            </Button>
+          )}
         </ButtonGroup>
         {this.state.showSignInModal && (
           <Signin
